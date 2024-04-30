@@ -11,7 +11,7 @@ const ModalContent = (props) => {
           placeholder="Enter item"
           value={props?.text}
           onChange={(e) => props?.setText(e.target.value)}
-        />j
+        />
         <select
           disabled={props?.text ? false : true}
           name="item"
