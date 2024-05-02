@@ -1,15 +1,16 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 // import Button from '../../../Food Components/Button'
-import cart from '../../../../Images/cart.svg'
-import { useCartContext, useGlobalContext } from '../../../../Context/context'
+import cartImg from '../../../../Images/cart.svg'
+import {  useGlobalContext } from '../../../../Context/context'
 import { useNavigate } from 'react-router-dom'
 
 const FoodItems = ({items}) => {
-  // const initial = JSON.parse(window.localStorage.getItem('cart') || "[]")
-  const [cart,setCart] = useCartContext([])
+  const initial = JSON.parse(window.localStorage.getItem('cart') || "[]")
+  const [cart,setCart] = useState(initial)
   const [{login}] = useGlobalContext()
   const navigateLogin = useNavigate()
   // console.log("initial",initial);
+  console.log(localStorage.getItem("cart"));
   const handleCart = () => {
      if (!login) {
       navigateLogin("/Login")
@@ -22,9 +23,9 @@ const FoodItems = ({items}) => {
         }])
      }
   }
-  // useEffect(() => {
-  //  window.localStorage.setItem('cart',JSON.stringify(cart))
-  // }, [cart])
+  useEffect(() => {
+   window.localStorage.setItem('cart',JSON.stringify(cart))
+  }, [cart])
   
   // console.log(img);
   // console.log("cart details",img,item_name,price);
@@ -39,7 +40,7 @@ const FoodItems = ({items}) => {
         <div className='w-full flex items-center justify-between my-4'>
           <h2 className='text-lg font-normal'>${items.price}</h2>
           <div className='bg-yellow-500 w-10 flex items-center justify-center h-10 rounded-full '>
-            <img src={cart} aria-hidden="true" className='text-white w-6' alt='cart' onClick={handleCart} />
+            <img src={cartImg} aria-hidden="true" className='text-white w-6' alt='cart' onClick={handleCart} />
           </div>
         </div>
         </div>

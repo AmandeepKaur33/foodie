@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom'
 // import Foodfooter from '../../Food Components/Footer'
 
 const Cart = () => {
-  // const initial = JSON.parse(window.localStorage.getItem('cart'))
+  const initial = JSON.parse(window.localStorage.getItem('cart'))
   const [{img,item_name,price}] = useCartContext()
   const goBack = useNavigate()
   const arr = [{}]
@@ -20,7 +20,7 @@ const Cart = () => {
   return (
     <div>
         {/* <Navbar /> */}
-        <div className=' h-[90vh] flex flex-col gap-4 mx-8 items-start justify-center'>
+        <div className='  flex flex-col gap-4 mx-8 items-start justify-center'>
           <div className=''>
             <h1 className='font-bold text-5xl'>Your Shopping Cart</h1>
           </div>
@@ -33,11 +33,13 @@ const Cart = () => {
               </tr>
             </thead>
             <tbody className=' mt-14'>
-              <tr className='mt-14 h-28'>
-                <td className='py-4 px-3 text-gray-500 text-xl '>{item_name}</td>
-                <td><img src={img} alt="" width={75} /></td>
-                <td className='py-4 px-3 text-gray-500 text-xl'>{price}</td>
+              {initial.map((item)=>(
+                <tr className='mt-14 h-28'>
+                <td className='py-4 px-3 text-gray-500 text-xl '>{item.item_name}</td>
+                <td><img src={item?.img} alt="" width={75} /></td>
+                <td className='py-4 px-3 text-gray-500 text-xl'>{item?.price}</td>
               </tr>
+              ))}
               <tr className='border-y border-gray-400 py-10 h-14'>
                 <td colSpan={2} className='text-right  text-xl font-bold'>GrandTotal :-{price}</td>
               </tr>

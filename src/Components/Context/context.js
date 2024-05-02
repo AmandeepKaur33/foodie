@@ -26,11 +26,11 @@ const AppProvider = ({children}) => {
     </AppContext.Provider>
 }
 const CartProvider = ({children}) => {
-    const initial = JSON.parse(window.localStorage.getItem('cart') || "[]")
+    const initial = JSON.parse(localStorage.getItem('cart') || "[]")
     // const initialValue = {img: "", item_name:"",price:""}
     const [cart,setCart] = useState(initial)
     useEffect(() => {
-        window.localStorage.setItem('cart',JSON.stringify(cart))
+        localStorage.setItem('cart',JSON.stringify(cart))
        }, [cart])
    return <CartContext.Provider value={[cart,setCart]} >
     {children}
