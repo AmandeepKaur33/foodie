@@ -45,4 +45,4 @@ const useCartContext = () => {
     return useContext(CartContext)
 }
 
-export {AppContext,AppProvider,useGlobalContext,CartProvider,useCartContext}
+// export {AppContext,AppProvider,useGlobalContext,CartProvider,useCartContext}

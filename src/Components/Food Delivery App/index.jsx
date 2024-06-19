@@ -1,34 +1,47 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Landing } from "./Food Components/Landing";
 import { Routes, Route } from "react-router-dom";
 import Aboutpage from "./Pages/About";
 import Menupage from "./Pages/Menu";
 import Contact from "./Pages/Contact/input";
 import Error from "./Pages/Error";
-import Login from "./Pages/Admin/Login";
 import Cart from "./Pages/Cart";
 import { Navbar } from "./Food Components/Header";
 import Foodfooter from "./Food Components/Footer";
-import {  useGlobalContext } from "../Context/context";
+import Form from "./Pages/Login";
+import { LoginContext } from "../Context/Authentication Context/LoginContext";
+import Panel from "./Pages/Admin/Admin Content";
+import Payment from "./Pages/Payment";
 
 const Foodapp = () => {
-    const [{login}] = useGlobalContext();
-    console.log("loginData",login);
+    // const initial = JSON.parse(localStorage.getItem('LoginData'))
+    // console.log("check login data", initial);
+    const {loginState} = useContext(LoginContext);
     return(
         <div className="w-full">
-        <Navbar />
+            {loginState?.admin
+            ?
+            <Panel/>
+            :
+            <div className="w-full">
+<Navbar />
         <Routes>
         <Route name="Landing" element={<Landing />} path="/" />
         <Route name="About" element={<Aboutpage />} path="/About"></Route>
         <Route name="Menu" element={<Menupage />} path="/Menu"></Route>
         <Route name="Contact" element={<Contact />} path="/Contact"></Route>
-        {login ? <Route name="Cart" element={<Cart />} path="/Cart"></Route> : <Route name="Cart" element={<Login />} path="/Cart"></Route>}
-       
-        <Route name="Login" element={<Login  />} path="/Login">
+        {loginState?.isAuthenticated ? <Route name="Cart" element={<Cart />} path="/Cart"></Route> : <Route name="Cart" element={<Form />} path="/Cart"></Route>}
+       {/* <Route name="Cart" element={<Cart />} path="/Cart"></Route> */}
+       <Route name="Payment" element={<Payment/>} path="/Payment" />
+        <Route name="Login" element={<Form  />} path="/Login">
         </Route>
         <Route path="*" element={<Error />} />
         </Routes>
         <Foodfooter />
+            </div>
+        }
+        
+        
         </div>
     )
 }

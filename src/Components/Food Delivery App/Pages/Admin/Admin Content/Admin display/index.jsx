@@ -9,7 +9,7 @@ import Breadcrum from './Breadcrum'
 
 const Admindisplay = () => {
   return (
-    <div className='w-full overflow-auto bg-gray-100 h-[85vh]'>
+    <div className='w-full overflow-auto bg-gray-100 h-[15vh]'>
         <Breadcrum />
         {/* <Dashboard /> */}
         {/* <Route name="Admin" element={<Admin />} path="/">

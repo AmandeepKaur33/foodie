@@ -10,6 +10,7 @@ const Contact = () => {
     <>
     {/* <Navbar /> */}
     <div className='w-full p-10 flex items-center justify-evenly my-10'>
+      {/* <button onClick={()=>localStorage?.clear("productData")}>react</button> */}
         <div>
         <h1 className="text-5xl font-bold font-serif text-yellow-600">Get In Touch...</h1>
         <Input type="text" id="name" placeholder="Enter name" />

@@ -6,7 +6,13 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
-import { AppProvider, CartProvider } from "./Components/Context/context";
+import { AuthProvider } from "./Components/Context/Authentication Context/Signup";
+import { LoginProvider } from "./Components/Context/Authentication Context/LoginContext";
+import { CategoryProvider } from "./Components/Context/Admin Context/CategoryContext";
+import { ProductProvider } from "./Components/Context/Admin Context/ProductsContext";
+import { CartProvider } from "./Components/Context/Customer Context/CartContext";
+import { PaymentProvider } from "./Components/Context/Customer Context/PaymentContext";
+// import { AuthProvider } from "./Components/Context/SignupIn";
 // import { AppProvider, LoginContext } from "./Components/Context/context";
 // import store from "./store";
 // import { Provider } from 'react-redux';
@@ -14,14 +20,22 @@ import { AppProvider, CartProvider } from "./Components/Context/context";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <AppProvider>
+  <AuthProvider>
+    <LoginProvider>
+      <CategoryProvider>
+        <ProductProvider>
+<PaymentProvider>
     <CartProvider>
   <BrowserRouter>
       <App />
     <ToastContainer />
   </BrowserRouter>
   </CartProvider>
-  </AppProvider>
+  </PaymentProvider>
+  </ProductProvider>
+  </CategoryProvider>
+  </LoginProvider>
+  </AuthProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function
