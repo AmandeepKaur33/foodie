@@ -6,6 +6,7 @@ import { useAuth } from '../../../Context/Authentication Context/Signup';
 
 const Form = () => {
   const {state} = useAuth();
+  console.log(state,"state");
   return (
     <div className='w-full h-[80vh] flex items-center justify-center'>
       {state?.isSignUp ? <LoginFoodie  /> : <Signup />}

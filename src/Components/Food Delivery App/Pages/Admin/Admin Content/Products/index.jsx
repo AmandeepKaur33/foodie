@@ -6,13 +6,11 @@ import { CategoryContext } from "../../../../../Context/Admin Context/CategoryCo
 import TableModal from "../../../../Food Components/Assets/Table Modal";
 
 const Product = () => {
-  const {prodState,handleProdChange,handleProdSubmit,handleProdSearch} = useContext(ProductContext)
-  const {state} = useContext(CategoryContext);
-  const [showDetails, setShowDetails] = useState({id: "", toggle: false})
-  // const ha = (id) => {
-  //   console.log(id);
-  // }
- console.log("catState",state?.categories?.map((i)=>i?.CName));
+  const { prodState, handleProdChange, handleProdSubmit, handleProdSearch } =
+    useContext(ProductContext);
+  const { state } = useContext(CategoryContext);
+  const [showDetails, setShowDetails] = useState({ id: "", toggle: false });
+
   const inp = [
     {
       label: "Product Name",
@@ -26,7 +24,7 @@ const Product = () => {
       placeholder: "Enter Product Description",
       type: "textarea",
       name: "PDesc",
-      value: prodState?.PDesc
+      value: prodState?.PDesc,
     },
     {
       label: "Product Price",
@@ -34,20 +32,20 @@ const Product = () => {
       type: "number",
       name: "Price",
       value: prodState?.Price,
-      change: handleProdChange
+      change: handleProdChange,
     },
     {
       label: "Product Quantity",
       placeholder: "Enter Product Quantity",
       type: "text",
       name: "Qty",
-      value: prodState?.Qty
+      value: prodState?.Qty,
     },
     {
       label: "Product Image",
       type: "file",
       name: "PImg",
-    }
+    },
   ];
   return (
     <div className="w-full flex gap-6 h-[calc(100vh-20vh)] overflow-auto bg-white px-6 py-12 my-1 mx-auto ">
@@ -60,21 +58,23 @@ const Product = () => {
             <Inputs key={item.id} list={item} onChange={handleProdChange} />
           ))}
           <div className="flex mt-4 gap-3">
-            <select className="w-full border-2 border-gray-300 py-1 px-2" name="Cat"  onChange={handleProdChange}>
-              {state?.categories?.map((elem)=>(
+            <select
+              className="w-full border-2 border-gray-300 py-1 px-2"
+              name="Cat"
+              onChange={handleProdChange}
+            >
+              {state?.categories?.map((elem) => (
                 <option key={elem?.id}>{elem?.CName}</option>
               ))}
-              
             </select>
           </div>
           <div className="flex items-center mt-8 gap-4">
-          <button
+            <button
               type="submit"
               className="px-5 py-1 bg-blue-400 text-white text-base font-medium"
             >
               {prodState?.isEdit ? "Edit" : "Add"}
             </button>
-            {/* <Buttons text="Add" /> */}
             <Buttons text="Clear" />
           </div>
         </form>
@@ -96,51 +96,60 @@ const Product = () => {
           ></input>
         </div>
         <div>
-        <table className='w-full text-left mt-3'>
-      
-      <tr className='my-32 border-y border-b-2 w-full  shadow-xl'>
-      <th className="py-3 px-3 ">Name</th>
-              <th className="py-3 px-3 ">Image</th>
-              <th className="py-3 px-3 text-center">Price</th>
-              <th className="py-3 px-3 text-center ">Quantity</th>
-              <th className="py-3 px-3 text-center ">Category</th>
-        {/* {headingList?.map((item,index)=>(
-          <th className='py-3 px-3 text-stone-700' key={index}>{item}</th>
-        ))} */}
-      </tr>
-  
-    <tbody className=''>
-      {prodState?.showProducts?.map((item)=>(
-        <tr className=' '>
-         
-          <td className=' py-4 px-3 text-gray-500 font-semibold flex items-center gap-2'><span onClick={()=>setShowDetails({id: item?.PId, toggle: true,obj: {...item}})} className="w-4  outline outline-offset-2 h-4 pb-1 p outline-stone-600 flex items-center text-base justify-center text-white  bg-blue-500 rounded-full">+</span>{item?.PName}</td>
-          <td className=' py-4 px-3 text-gray-500 font-semibold'><img src={item?.PImg} width={56} alt={item.PName}/></td>
-          <td className='py-4 px-3 text-gray-500 font-semibold text-center '>{item?.Price}</td>
-          <td className=' py-4 px-3 text-gray-500 font-semibold text-center'>{item?.Qty}</td>
-          <td className=' py-4 px-3 text-gray-500 font-semibold text-center'>{item?.Cat}</td>
-          <td className=' py-4 px-3 text-gray-500 font-semibold text-center'>
-            {/* <button onClick={() => ha(item?.PId)}>koio</button> */}
-          {showDetails.toggle && <TableModal setShowDetails={setShowDetails} showDetails={showDetails} />}
-          </td>
-          
-          {/* <td className=' py-4 mt-3 px-3 text-gray-500 font-semibold flex items-center gap-2'>
-            {/* <i onClick={()=>handleUpdate(item?.CatId)} className='fa-solid fa-pencil bg-blue-500 px-3 py-1 text-xs rounded-xl text-white '></i>
-            <i onClick={()=>handleDelete(item?.CatId)} className='fa-solid fa-cancel bg-[#FC6180] px-3 py-1 text-xs rounded-xl text-white '></i> */}
-          {/* </td> */} 
-        </tr>
-      ))}
-    </tbody>
-  </table>
+          <table className="w-full text-left mt-3">
+            <thead>
+              <tr className="my-32 border-y border-b-2 w-full  shadow-xl">
+                <th className="py-3 px-3 ">Name</th>
+                <th className="py-3 px-3 ">Image</th>
+                <th className="py-3 px-3 text-center">Price</th>
+                <th className="py-3 px-3 text-center ">Quantity</th>
+                <th className="py-3 px-3 text-center ">Category</th>
+              </tr>
+            </thead>
+
+            <tbody className="">
+              {prodState?.showProducts?.map((item) => (
+                <tr className=" " key={item?.PId}>
+                  <td className=" py-4 px-3 text-gray-500 font-semibold flex items-center gap-2">
+                    <span
+                      onClick={() =>
+                        setShowDetails({
+                          id: item?.PId,
+                          toggle: true,
+                          obj: { ...item },
+                        })
+                      }
+                      className="w-4  outline outline-offset-2 h-4 pb-1 p outline-stone-600 flex items-center text-base justify-center text-white  bg-blue-500 rounded-full"
+                    >
+                      +
+                    </span>
+                    {item?.PName}
+                  </td>
+                  <td className=" py-4 px-3 text-gray-500 font-semibold">
+                    <img src={item?.PImg} width={56} alt={item.PName} />
+                  </td>
+                  <td className="py-4 px-3 text-gray-500 font-semibold text-center ">
+                    {item?.Price}
+                  </td>
+                  <td className=" py-4 px-3 text-gray-500 font-semibold text-center">
+                    {item?.Qty}
+                  </td>
+                  <td className=" py-4 px-3 text-gray-500 font-semibold text-center">
+                    {item?.Cat}
+                  </td>
+                  <td className=" py-4 px-3 text-gray-500 font-semibold text-center">
+                    {showDetails.toggle && (
+                      <TableModal
+                        setShowDetails={setShowDetails}
+                        showDetails={showDetails}
+                      />
+                    )}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
-        {/* <div>
-          {categoryList.map((item, index) => (
-            <Table
-              key={index}
-              headingList={item.heading}
-              contentList={item.content}
-            />
-          ))}
-        </div> */}
       </div>
     </div>
   );

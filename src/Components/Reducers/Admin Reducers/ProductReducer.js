@@ -5,15 +5,15 @@ const ProductReducer = (state, action) => {
         ...state,
         [action.field]: action.value,
       };
-      case 'UPDATE_QUANTITY':
-      return {
-        ...state,
-        products: state.products.map(product =>
-          product.PId === action.pid
-            ? console.log(product?.Qty - action.quantityToSubtract,"diff")
-            : console.log("proucr")
-        )
-      }
+      // case 'UPDATE_QUANTITY':
+      // return {
+      //   ...state,
+      //   products: state.products.map(product =>
+      //     product.PId === action.pid
+      //       ? console.log(product?.Qty - action.quantityToSubtract,"diff")
+      //       : console.log("proucr")
+      //   )
+      // }
       case "EDIT_INPUTS_CHANGE":
         return{
             ...state,
@@ -49,6 +49,8 @@ const ProductReducer = (state, action) => {
             products: action.products,
             showProducts: action.products
         }
+      case "check":
+        console.log("check dispatch",action.products)
     default:
       return state;
   }

@@ -23,16 +23,16 @@ root.render(
   <AuthProvider>
     <LoginProvider>
       <CategoryProvider>
+    <CartProvider>
         <ProductProvider>
 <PaymentProvider>
-    <CartProvider>
   <BrowserRouter>
       <App />
     <ToastContainer />
   </BrowserRouter>
-  </CartProvider>
   </PaymentProvider>
   </ProductProvider>
+  </CartProvider>
   </CategoryProvider>
   </LoginProvider>
   </AuthProvider>

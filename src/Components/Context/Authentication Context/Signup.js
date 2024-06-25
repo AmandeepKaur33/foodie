@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import reducer from '../../Reducers/Authentication Reducers/SignupReducer';
 
 import { useReducer } from "react";
@@ -13,6 +13,11 @@ const initialData =
         name: "",
         username: "",
         password: "",
+        address: "",
+        zipCode: "",
+        mobile: "",
+        img: "",
+        email: "",
         isSignUp: true,
         user: JSON.parse(localStorage.getItem("registrationData")) || [],
         showUsers: JSON.parse(localStorage.getItem("registrationData")) || []
@@ -22,10 +27,11 @@ const initialData =
 const useAuth = () => {
     return useContext(AuthContext);
   };
-  // const initialRecord = []
+  // const initialRecord = []h
 // AuthProvider component to provide authentication state and action 
 const AuthProvider = ({children}) => {
     const [state,dispatch] = useReducer(reducer,initialData);
+    const [edit,setEdit] = useState(false)
     // const [recordState, recordDispatch] = useReducer(reducer,initialRecord)
 console.log("state data",state);
     // load state from local storage on component mount
@@ -42,22 +48,68 @@ console.log("state data",state);
     // }, [state]);
 
     const handleChange = (e) => {
-        dispatch({
-            type: 'INPUT_CHANGE',
+      console.log(e.target.value);
+      if (e.target.type === "file") {
+        const file = e.target.files[0];
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          // dispatch({type: "INPUT_CHANGE", field: e.target.name, value: URL.createObjectURL(e.target.files[0])})
+          dispatch({
+            type: "INPUT_CHANGE",
             field: e.target.name,
-            value: e.target.value
+            value: reader.result,
+          });
+        };
+        if (file) {
+          reader.readAsDataURL(file);
+        }
+      }else{
+        dispatch({
+          type: 'INPUT_CHANGE',
+          field: e.target.name,
+          value: e.target.value
         });
+      }
+      console.log(state,"state");
     };
     const handleSubmit = async (e) => {
-      e.preventDefault();
-      // dispatch({ type: 'SUBMIT_FORM' });
-  
-      // const endpoint = state.isSignUp ? '/api/signup' : '/api/login';
+      
+      if (edit) {
+        const updatedProfile = state.user.map((item) =>
+          item.id === e
+            ? {
+                ...item,
+                name: state.name,
+                username: state.username,
+                address: state.address,
+                zipCode: state.zipCode,
+                mobile: state.mobile,
+                email: state.email,
+              }
+            : item
+            )
+            dispatch({ type: 'SUBMIT_SUCCESS', user: updatedProfile });
+            setEdit(false)
+      }
+      else{
+        e.preventDefault();
       const existingData =  JSON.parse(localStorage.getItem('registrationData')) || []
-      const payload = [...existingData, { id: Math.floor(Math.random()*10), name: state.name, username: state.username ,password: state.password }];
+      const payload = [...existingData, 
+        {
+           id: Math.floor(Math.random()*10), 
+           name: state.name,
+            username: state.username,
+            password: state.password,
+            address: state.address,
+            zipCode: state.zipCode,
+            mobile: state.mobile,
+            img: state.img,
+            email: state.email,
+         }];
       dispatch({ type: 'SUBMIT_SUCCESS', user: payload });
       dispatch({type: "INPUT_CLEAR"})
-      console.log(state);
+      console.log(state?.user);
+        }
     //   try {
     //     const response = await fetch(endpoint, {
     //       method: 'POST',
@@ -90,7 +142,7 @@ console.log("state data",state);
     console.log(filterItems);
     dispatch({type: "SEARCH_ITEMS", value: filterItems})
     }
-    return <AuthContext.Provider value={{state,handleChange,toggleForm,handleSubmit,handleUserDelete,handleUserSearch}}>
+    return <AuthContext.Provider value={{state, edit, setEdit,handleChange,toggleForm,handleSubmit,handleUserDelete,handleUserSearch}}>
         {children}
     </AuthContext.Provider>
 }

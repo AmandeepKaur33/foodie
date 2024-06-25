@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useEffect, useReducer } from "react";
 import CartReducer from "../../Reducers/Customer Reducer/CartReducer";
 import { LoginContext } from "../Authentication Context/LoginContext";
-import { ProductContext } from "../Admin Context/ProductsContext";
+// import { ProductContext } from "../Admin Context/ProductsContext";
 
 const CartContext = createContext();
 console.log("check storage",localStorage.getItem("cartItems"));
@@ -13,7 +13,7 @@ const initialData = {
 // localStorage.clear("cartItems")
 const CartProvider = ({ children }) => {
   const [cartState, cartDispatch] = useReducer(CartReducer, initialData);
-  const {qtyUpdate} = useContext(ProductContext);
+  // const {qtyUpdate} = useContext(ProductContext);
   const { loginState } = useContext(LoginContext);
 
   const handleCart = (item) => {
@@ -61,19 +61,12 @@ const CartProvider = ({ children }) => {
     console.log(newCategory);
     cartDispatch({ type: "SUBMIT_CART", cartPayload: newCategory });
   };
-  const handleDeleteCart = (id) => {
-
-    const newCategory = cartState?.cartItems?.filter(
-      (item) => item?.CId == id
-
-    );
-    const pid = newCategory?.map((it)=> it?.PId)
-    const qty = newCategory?.map((it)=> it?.cartQty)
-    console.log(pid,"pid");
-    qtyUpdate(pid,qty)
-    // console.log(q,"prod");
-    // cartDispatch({ type: "SUBMIT_CART", cartPayload: newCategory });
-  }
+ const handleDeleteCart = (cid) => {
+   const newCart = cartState?.cartItems?.filter(
+    (item) => item?.CId !== cid
+   );
+   cartDispatch({type: "SUBMIT_CART", cartPayload: newCart});
+ }
   const cart = cartState?.cartItems?.filter(
     (item) => item?.CId === loginState?.user?.CId
   );
@@ -88,18 +81,7 @@ const CartProvider = ({ children }) => {
 
   
   
-  // const findTotal = (cartId) => {
-  //   const get_Total = cart?.map((item)=>(
-  //     item?.cartId === cartId
-  //     ?
-  //     {
-  //       ...item,
-  //       total_Price: item?.price * item?.cartQty
-  //     }: item
-  //     ))
-  //     return cartDispatch({type: "SUBMIT_CART", cartPayload: get_Total})
-  //     //  console.log(cartState);
-  // }
+
   const setDecrement = (cartId, cartQty, CId) => {
     const updatedQuantity = cartState?.cartItems?.map((item) =>
       item?.cartId === cartId && item?.CId === CId
@@ -135,7 +117,6 @@ const CartProvider = ({ children }) => {
         : item
         );
         console.log(cartState);
-        // const payload = [...cartState?.cartItems, updatedQuantity]
         cartDispatch({ type: "SUBMIT_CART", cartPayload: updatedQuantity });
         const get_Total = updatedQuantity?.map((item)=>(
           item?.cartId === cartId

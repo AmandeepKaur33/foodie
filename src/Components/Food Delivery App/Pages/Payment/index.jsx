@@ -3,11 +3,20 @@ import Inputs from '../../Food Components/Assets/Form'
 import { CartContext } from '../../../Context/Customer Context/CartContext'
 import { PaymentContext } from '../../../Context/Customer Context/PaymentContext'
 import { LoginContext } from '../../../Context/Authentication Context/LoginContext'
+import { useNavigate } from 'react-router-dom';
+import {toast} from "react-toastify"
+import { ProductContext } from '../../../Context/Admin Context/ProductsContext'
+import { v4 as uuid } from 'uuid'
 
 const Payment = () => {
   const {grandTotal} = useContext(CartContext)
-  const {paymentState,handleChange,handleSubmit} = useContext(PaymentContext)
-  const {loginState} = useContext(LoginContext)
+  const {paymentState,paymentDispatch,handleChange,validateForm} = useContext(PaymentContext)
+  const {handleDeleteCart} = useContext(CartContext)
+  const {handleQtyUpdate} = useContext(ProductContext)
+  const { loginState } = useContext(LoginContext);
+  const {cartState} = useContext(CartContext)
+  console.log(paymentState?.submit,"exp");
+  const navigate = useNavigate();
   const list = [
     {
       label: "Card Owner",
@@ -15,6 +24,7 @@ const Payment = () => {
       type: "text",
       placeholder: "Card Owner Name",
       value: paymentState?.Owner,
+      error: `${paymentState?.errors?.Owner}`
     },
     {
       label: "Card Number",
@@ -22,8 +32,77 @@ const Payment = () => {
       type: "text",
       placeholder: "Valid Card Number",
       value: paymentState?.cardNo,
+      error: `${paymentState?.errors?.cardNo}`
     }
   ]
+  const handleSubmit = () => {
+    // console.log(validateForm());
+ if (validateForm()) {
+    const existingData =  JSON.parse(localStorage.getItem("paymentInfo")) || [];
+    const existingOrderData =  JSON.parse(localStorage.getItem("ordersInfo")) || [];
+    const OrderId = uuid();
+    const filterCartData = cartState?.cartItems?.filter((i) => i?.CId === loginState?.user?.CId)
+      const updatedQuantities = filterCartData.map(element => ({
+        id: element?.PId,
+        qty: element?.cartQty
+      }));
+      const newOrderDetails = filterCartData?.map(element => (
+        {
+          OrderId: OrderId,
+          CId: element?.CId,
+          PName: element?.name,
+          unitPrice: element?.price,
+          Qty: element?.cartQty,
+          total_Price: element?.total_Price,
+          status: "Pending"
+        }
+      ))
+      const payloadOrders = [
+        ...existingOrderData,
+        newOrderDetails
+        ]
+      console.log("payloadOrders",payloadOrders);
+    const payloadData = [
+      ...existingData,
+      {
+        OrderId: OrderId,
+        paymentDate: Date.now(),
+        CId: loginState?.user?.CId,
+        payId: Math.floor(Math.random() * 10),
+        Owner: paymentState?.Owner,
+        cardNo: paymentState?.cardNo,
+        expMonth: paymentState?.expMonth,
+        expYear: paymentState?.expYear,
+        CVV: paymentState?.CVV,
+        DAddr: paymentState?.DAddr,
+      },
+    ];
+    console.log(payloadData.CId,"length");
+    paymentDispatch({ type: "SUBMIT", payload: payloadData , orderPayload: payloadOrders});
+    console.log(paymentState?.paymentRecords,"pr");
+    handleDeleteCart(loginState?.user?.CId)
+  
+      // Dispatch all updates together
+      updatedQuantities.forEach(({ id, qty }) => {
+        setTimeout(() => {
+          handleQtyUpdate(id, qty);
+      }, 3000); // 3000 milliseconds delay        
+      });
+      // filterCartData.forEach(element => {
+      //   // console.log(element?.cartQty,element?.PId);
+      //   handleQtyUpdate(element?.PId,element?.cartQty)
+      // });
+      // console.log(filterCartData);
+    
+    // handleQty()
+    paymentDispatch({type: "SET_CLEAR"})
+    toast("submit");
+    navigate("/Invoice")
+}
+else{
+  console.log('form has errors');
+}
+  };
  console.log(loginState?.user?.CId,"id");
   return (
     <div className="w-full flex flex-col items-center gap-6 h-[800px] overflow-auto bg-white px-6 py-12 my-1 mx-auto ">
@@ -38,19 +117,22 @@ const Payment = () => {
               ))}
               <div className='w-full flex mt-3 gap-7'>
                 <div className='w-full flex flex-col gap-2'>
-                  Expiration Date
+                 <h1 className='flex items-center'>
+                 Expiration Date {paymentState?.errors?.expMonth && <span className='text-red-500  mt-1 text-lg'>*</span>}
+                  </h1> 
                   <div className='flex '>
+                  
                   <input type='text' placeholder='MM' name='expMonth' value={paymentState?.expMonth} onChange={handleChange} className='w-32 border px-2 py-1' />
                   <input type='text' placeholder='YY' name='expYear' value={paymentState?.expYear} onChange={handleChange} className='w-32 border px-2 py-1' />
                   </div>
                 </div>
                 <div className='w-full flex flex-col gap-2'>
-                  <label htmlFor='CVV'>CVV <span className='text-white bg-black rounded-full px-1 text-xs'>?</span></label>
+                  <label htmlFor='CVV' className='flex items-center'>CVV{paymentState?.errors?.CVV && <span className='text-red-500  mt-1 text-lg'>*</span>}</label>
                   <input type='number' placeholder='CVV' name='CVV' value={paymentState?.CVV} onChange={handleChange} className='px-2 py-1 border w-28' />
                 </div>
               </div>
               <div className='w-full flex flex-col gap-2 mt-3'>
-                <label htmlFor="DAddr">Delivery Address</label>
+                <label htmlFor="DAddr">Delivery Address {paymentState?.errors?.DAddr && <span className='text-red-500  mt-1 text-lg'>*</span>}</label>
                 <textarea  placeholder='Delivery Address' name='DAddr' value={paymentState?.DAddr} onChange={handleChange} className='border px-2 py-1'/>
               </div>
               <div className='w-full mt-3 h-12 px-5 py-2 bg-gray-200'>
@@ -58,6 +140,8 @@ const Payment = () => {
                   e.preventDefault()
                   handleSubmit();
                   // handleDeleteCart(loginState?.user?.CId)
+                //   {paymentState?.submit &&  navigate("/Invoice")}
+                //  console.log(paymentState);
 
                 }} className='w-full text-center py-1 bg-blue-400 text-white rounded-md'>Confirm Payment</button>
               </div>

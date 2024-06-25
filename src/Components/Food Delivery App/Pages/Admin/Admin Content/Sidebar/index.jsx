@@ -28,8 +28,8 @@ const Sidebar = () => {
         },
         {
             desc: "Product Delivery Status",
-            nav: "Product Status",
-            link: "/Admin/Product Status",
+            nav: "Order Status",
+            link: "/orderstatus",
             img: "fa-solid fa-signs-post"
         },
         {

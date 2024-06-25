@@ -4,6 +4,7 @@ import { useAuth } from "../../../../../Context/Authentication Context/Signup";
 import { LoginContext } from "../../../../../Context/Authentication Context/LoginContext";
 // import { useGlobalContext } from '../../../../../../Context/context'
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const LoginFoodie = () => {
   const navigate = useNavigate();
@@ -26,7 +27,7 @@ const LoginFoodie = () => {
       dispatch({ type: "ADMIN_LOAD" });
       navigate("/admin");
       dispatch({ type: "INPUT_CLEAR" });
-      alert("admin");
+      toast("admin");
     } else {
       state?.user.map((i) => {
         if (loginState?.uname && loginState?.pass) {

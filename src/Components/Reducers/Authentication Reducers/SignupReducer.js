@@ -21,7 +21,12 @@ const AuthReducer = (state,action) => {
                 name: "",
                 username: "",
                 password: "",
-                id: ""
+                id: "",
+                address: "",
+                zipCode: "",
+                mobile: "",
+                img: "",
+                email: "",
             }
             case 'SUBMIT_SUCCESS':
                 return {

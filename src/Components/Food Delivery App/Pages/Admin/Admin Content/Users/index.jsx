@@ -26,25 +26,27 @@ const Users = () => {
         <table className='w-full text-left mt-3'>
       
       <tr className='my-32 border-y border-b-2 w-full  shadow-xl'>
-      <th className="py-3 px-3 text-center ">User Id</th>
-              <th className="py-3 px-3 text-center">Name</th>
-              <th className="py-3 px-3 text-center">Username</th>
-              <th colSpan="2" className="py-3 px-3 text-center ">Action</th>
+      <th className="py-3 px-3 text-center ">SrNo</th>
+              <th className="py-3 px-3 ">Name</th>
+              <th className="py-3 px-3 ">Username</th>
+              <th className="py-3 px-3 ">Email</th>
+              <th colSpan="2" className="py-3 px-3  ">Action</th>
         {/* {headingList?.map((item,index)=>(
           <th className='py-3 px-3 text-stone-700' key={index}>{item}</th>
         ))} */}
       </tr>
   
     <tbody className=''>
-      {state?.showUsers?.map((item)=>(
+      {state?.showUsers?.map((item,index)=>(
         <tr className='border-b'>
-          <td className=' py-4 px-3 text-gray-500 font-semibold text-center'>{item?.id}</td>
-          <td className=' py-4 px-3 text-gray-500 font-semibold text-center'>{item?.name}</td>
-          <td className=' py-4 px-3 text-gray-500 font-semibold text-center'>{item?.username}</td>
+          <td className=' py-4 px-3 text-gray-500 font-semibold'>{index+1}</td>
+          <td className=' py-4 px-3 text-gray-500 font-semibold'>{item?.name}</td>
+          <td className=' py-4 px-3 text-gray-500 font-semibold'>{item?.username}</td>
+          <td className=' py-4 px-3 text-gray-500 font-semibold'>{item?.email}</td>
           {/* <td className=' py-4 px-3 text-gray-500 font-semibold'><img src={item?.CatImg} width={56} alt={item.CName}/></td> */}
           
           {/* <td className=' py-4 px-3 text-gray-500 font-semibold'>{item?.CreatedDate}</td> */}
-          <td className='text-center py-4 mt-3 px-3 text-gray-500 font-semibold '>
+          <td className='py-4 mt-3 px-3 text-gray-500 font-semibold '>
             {/* <i onClick={()=>handleUpdate(item?.CatId)} className='fa-solid fa-pencil bg-blue-500 px-3 py-1 text-xs rounded-xl text-white '></i> */}
             <i onClick={()=>handleUserDelete(item?.id)} className='fa-solid fa-trash bg-[#FC6180] px-3 py-1 text-xs rounded-xl text-white '></i>
           </td>

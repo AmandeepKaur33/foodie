@@ -12,8 +12,8 @@ const initialData = {
   Qty: "",
   PImg: "",
   Cat: "Select Category",
-  products: JSON.parse(localStorage.getItem("productsData")) || [],
-  showProducts: JSON.parse(localStorage.getItem("productsData")) || [],
+  products: JSON.parse(localStorage.getItem("productData")) || [],
+  showProducts: JSON.parse(localStorage.getItem("productData")) || [],
   isEdit: false
 };
 
@@ -48,7 +48,7 @@ const ProductProvider = ({ children }) => {
   };
 
   const handleProdSubmit = (e) => {
-    // localStorage.removeItem("productsData")
+    // localStorage.removeItem("productData")
     e.preventDefault();
     if (prodState.isEdit) {
       
@@ -66,12 +66,12 @@ const ProductProvider = ({ children }) => {
             }
           : item
       );
-      // localStorage.clear("productsData")
+      // localStorage.clear("productData")
       prodDispatch({ type: "SUBMIT", products: updatedCategories });
       prodDispatch({ type: "SET_CLEAR" });
     } else {
       const existingData =
-        JSON.parse(localStorage.getItem("productsData")) || [];
+        JSON.parse(localStorage.getItem("productData")) || [];
       const payload = [
         ...existingData,
         {
@@ -87,12 +87,12 @@ const ProductProvider = ({ children }) => {
       prodDispatch({ type: "SUBMIT", products: payload });
       alert("submit");
       prodDispatch({ type: "SET_CLEAR" });
-      // localStorage.setItem('productsData',JSON.stringify(state?.categories))
+      // localStorage.setItem('productData',JSON.stringify(state?.categories))
       console.log("submit", prodState?.products);
     }
   };
   useEffect(() => {
-    localStorage.setItem("productsData", JSON.stringify(prodState?.products));
+    localStorage.setItem("productData", JSON.stringify(prodState?.products));
   }, [prodState?.products]);
 
 const handleProdDelete = (id) => {
@@ -142,6 +142,38 @@ const handleProdUpdate = (id) => {
       isEdit: true,
     });
 }
+// const handleQtyUpdate = (id,qty) => {
+//   // console.log(id,qty,"idqty")
+//   const updatedQuantity = prodState.products.map((item) =>
+//     item.PId === id 
+//       ? {
+//           ...item,
+//           Qty: item?.Qty - qty,
+//         }
+//       : item
+//   );
+//   console.log("updatedQuantity",updatedQuantity);
+//   prodDispatch({ type: "SUBMIT", products: updatedQuantity });
+// }
+// let updatedQuantity;
+const handleQtyUpdate = (id, qty) => {
+  // Map over the current products array to create a new array with updated quantities
+  const updatedQuantity = prodState.products.map((item) =>
+    item.PId === id 
+      ? {
+          ...item,
+          Qty: item.Qty - qty <= 0 ? "Out of Stock" : item.Qty - qty,  // Subtract the quantity
+        }
+      : item
+  );
+
+  // Dispatch action to update state with the new array of products
+  prodDispatch({ type: "SUBMIT", products: updatedQuantity });
+};
+// useEffect(() => {
+// updatedQuantity &&  prodDispatch({ type: "SUBMIT", products: updatedQuantity });
+// console.log(updatedQuantity, "useff")
+// }, [updatedQuantity])
 
 const handleProdSearch = (e) => {
   const filterItems = prodState?.products?.filter((item)=> item?.PName.toLowerCase().includes(e.target.value))
@@ -173,11 +205,11 @@ const handleProdSearch = (e) => {
 
   return (
     <ProductContext.Provider
-      value={{ prodState, prodDispatch, handleProdChange, handleProdSubmit, handleProdDelete, handleProdUpdate, handleProdSearch }}
+      value={{ prodState, prodDispatch, handleProdChange, handleProdSubmit, handleProdDelete,handleQtyUpdate ,handleProdUpdate, handleProdSearch }}
     >
       {children}
     </ProductContext.Provider>
   );
 };
 
-export { ProductContext, ProductProvider };
+export { ProductContext, ProductProvider }

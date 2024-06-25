@@ -63,7 +63,8 @@ const Menupage = () => {
   //     price: 15
   //   },
   // ]
-  const [menu,setMenu] = useState(prodState?.products)
+  const showMenu = prodState?.products?.filter((i)=>i?.Qty !== "Out of Stock")
+  const [menu,setMenu] = useState(showMenu)
   const Filter = (e) => {
    e.target.value !== "All" ? setMenu(prodState?.products.filter((item)=> item.PName.toLowerCase().includes(e.target.value) || item.PName.includes(e.target.value))) : setMenu(prodState?.products)
   }

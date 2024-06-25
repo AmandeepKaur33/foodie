@@ -6,6 +6,7 @@ import { Route, Routes } from 'react-router-dom'
 import Categories from './Categories'
 import Product from './Products'
 import Users from './Users'
+import OrderStatus from './Order Status'
 // import Dashboard from './Categories'
 // import Dashboard from './Dashboard'
 
@@ -20,6 +21,7 @@ const Panel = () => {
           <Route element={<Categories/>} path='/categories'/>
           <Route element={<Product/>} path='/products'/>
           <Route element={<Users/>} path='/users'/> 
+          <Route element={<OrderStatus/>} path='/orderstatus'/> 
           
          </Routes>
         {/* <Routes>

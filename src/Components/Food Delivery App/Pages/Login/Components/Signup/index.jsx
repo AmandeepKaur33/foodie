@@ -4,37 +4,13 @@ import { useAuth } from '../../../../../Context/Authentication Context/Signup';
 
 const Signup = () => {
   const { state, handleChange, toggleForm ,handleSubmit} = useAuth();
-  // const [userData, setUserData] = useState({
-  //   id: Math.floor(Math.random()*10),
-  //   name: "",
-  //   username: "",
-  //   password: ""
-  // })
- 
-  // const handleInp = (e) => {
-  //   const {name, value} = e.target;
-  //   setUserData((prev)=> ({...prev, [name]: value}))
-  // }
-  // console.log(userData);
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   const existingData = JSON.parse(localStorage.getItem('registrationData')) || [];
-  //   const newData = [...existingData,userData];
-  //   localStorage.setItem('registrationData',JSON.stringify(newData));
-  //  setUserData({name: '', username: '', password: ''})
-  // }
-  // const local = JSON.parse(localStorage.getItem("signupData"));
-  // console.log("local data", JSON.parse(localStorage.getItem("registrationData")) );
-
-  // localStorage.clear()
-  // console.log("local",localStorage.getItem('userData'));
   return (
     <div className='w-4/5 h-4/5  bg-blue-500 shadow-2xl flex'>
       <form onSubmit={handleSubmit} className='w-1/2 h-full flex flex-col items-center gap-5 justify-center bg-white'>
       <h1 className='text-3xl font-bold text-blue-500'>SignUp Here!!</h1>
-        <input type='text' name='name' className='w-4/5 border border-blue-500 px-3 py-1  focus:outline-2 outline-blue-500 focus:rounded-2xl' value={state?.name} onChange={handleChange} placeholder='Enter name'/>
-        <input type='text' name='username' className='w-4/5 border border-blue-500 px-3 py-1  focus:outline-2 outline-blue-500 focus:rounded-2xl' value={state?.username} onChange={handleChange} placeholder='Enter username'/>
-        <input type='password' name='password' className='w-4/5 border border-blue-500 px-3 py-1  focus:outline-2 outline-blue-500 focus:rounded-2xl' value={state?.password} onChange={handleChange} placeholder='Enter password'/>
+        <input type='text' name='name' required className='w-4/5 border border-blue-500 px-3 py-1  focus:outline-2 outline-blue-500 focus:rounded-2xl' value={state?.name} onChange={handleChange} placeholder='Enter name'/>
+        <input type='text' name='username' required className='w-4/5 border border-blue-500 px-3 py-1  focus:outline-2 outline-blue-500 focus:rounded-2xl' value={state?.username} onChange={handleChange} placeholder='Enter username'/>
+        <input type='password' name='password' required className='w-4/5 border border-blue-500 px-3 py-1  focus:outline-2 outline-blue-500 focus:rounded-2xl' value={state?.password} onChange={handleChange} placeholder='Enter password'/>
         <button type='submit' className=' px-8 py-2 rounded-3xl w-40 text-white  bg-blue-500 text-xl'>Signup</button>
       </form>
       <div className="w-1/2 h-full flex flex-col items-center gap-20 justify-end  text-white pt-4">

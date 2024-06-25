@@ -63,6 +63,7 @@ const Navbar = () => {
                 ))}
             </ul>
             <nav className="flex items-center gap-4">
+                <NavLink to="/Profile"> <i class="fa fa-user" ></i></NavLink>
                 <div className="relative">
                 <NavLink to="/Cart"><i className="fa-solid fa-cart-shopping text-white text-lg "></i></NavLink>
                 {loginState?.isAuthenticated && <div className="absolute top-[-12px] bg-yellow-400 text-white w-4 h-4  py-0 rounded-full right-[-9px] flex items-center justify-center">{extractCounts.length}</div>}

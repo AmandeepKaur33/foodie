@@ -2,9 +2,11 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { CartContext } from "../../../Context/Customer Context/CartContext";
+import { PaymentContext } from "../../../Context/Customer Context/PaymentContext";
 
 const Cart = () => {
   const { cart, grandTotal,handleCartItemDelete, setIncrement, setDecrement} = useContext(CartContext);
+  // const {handleCartData} = useContext(PaymentContext)
   const navigate = useNavigate();
 
   const handleContinue = (address) => {
@@ -77,15 +79,10 @@ const Cart = () => {
           </tbody>
         </table>
         <div className="w-full flex  gap-36">
-          {/* <Button
-            text="Continue Shopping"
-            onClick={handleContinue}
-            bgColor="teal-500"
-          /> */}
           <button onClick={handleContinue("Menu")} className="px-8 py-2 rounded-3xl text-white bg-teal-500">Continue Order</button>
-          <button className="px-8 py-2 rounded-3xl text-white bg-green-500" onClick={()=>handleContinue("Payment")}>Checkout</button>
-          {/* <Button text="Update Cart" bgColor="yellow-600" /> */}
-          {/* <Button text="Checkout" bgColor="green-500" /> */}
+          { cart.length !== 0 && <button className="px-8 py-2 rounded-3xl text-white bg-green-500" onClick={()=>{
+            handleContinue("Payment");
+            }}>Checkout</button>}         
         </div>
       </div>
     </div>

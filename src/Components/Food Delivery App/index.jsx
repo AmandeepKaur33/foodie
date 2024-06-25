@@ -12,6 +12,10 @@ import Form from "./Pages/Login";
 import { LoginContext } from "../Context/Authentication Context/LoginContext";
 import Panel from "./Pages/Admin/Admin Content";
 import Payment from "./Pages/Payment";
+import Invoice from "./Pages/Invoice";
+import Profile from "./Pages/Profile";
+import Signup from "./Pages/Authentication/Signup";
+import Login from "./Pages/Authentication/Login";
 
 const Foodapp = () => {
     // const initial = JSON.parse(localStorage.getItem('LoginData'))
@@ -30,10 +34,13 @@ const Foodapp = () => {
         <Route name="About" element={<Aboutpage />} path="/About"></Route>
         <Route name="Menu" element={<Menupage />} path="/Menu"></Route>
         <Route name="Contact" element={<Contact />} path="/Contact"></Route>
-        {loginState?.isAuthenticated ? <Route name="Cart" element={<Cart />} path="/Cart"></Route> : <Route name="Cart" element={<Form />} path="/Cart"></Route>}
+        {loginState?.isAuthenticated ? <Route name="Cart" element={<Cart />} path="/Cart"></Route> : <Route name="Cart" element={<Login />} path="/Cart"></Route>}
        {/* <Route name="Cart" element={<Cart />} path="/Cart"></Route> */}
        <Route name="Payment" element={<Payment/>} path="/Payment" />
-        <Route name="Login" element={<Form  />} path="/Login">
+       {loginState?.isAuthenticated ? <Route name="Profile" element={<Profile/>} path="/Profile" /> : <Route name="Profile" element={<Login  />} path="/Profile"></Route>}
+       <Route name="Invoice" element={<Invoice/>} path="/Invoice" />
+       <Route name="Signup" element={<Signup/>} path="/Signup" />
+        <Route name="Login" element={<Login  />} path="/Login">
         </Route>
         <Route path="*" element={<Error />} />
         </Routes>
