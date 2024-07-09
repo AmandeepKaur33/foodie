@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
-import reducer from '../../Reducers/Authentication Reducers/SignupReducer';
+import reducer from "../../Reducers/Authentication Reducers/SignupReducer";
 
 import { useReducer } from "react";
 
@@ -7,143 +7,166 @@ import { useReducer } from "react";
 const AuthContext = createContext();
 
 // define initialData
-const initialData = 
-    {
-        id: "",
-        name: "",
-        username: "",
-        password: "",
-        address: "",
-        zipCode: "",
-        mobile: "",
-        img: "",
-        email: "",
-        isSignUp: true,
-        user: JSON.parse(localStorage.getItem("registrationData")) || [],
-        showUsers: JSON.parse(localStorage.getItem("registrationData")) || []
-    }
-;
+const initialData = {
+  id: "",
+  name: "",
+  username: "",
+  password: "",
+  address: "",
+  zipCode: "",
+  mobile: "",
+  img: "",
+  email: "",
+  isSignUp: true,
+  user: JSON.parse(localStorage.getItem("signupRecord")) || [],
+  showUsers: JSON.parse(localStorage.getItem("signupRecord")) || [],
+};
 // Create a custom hook to access authentication context
 const useAuth = () => {
-    return useContext(AuthContext);
-  };
-  // const initialRecord = []h
-// AuthProvider component to provide authentication state and action 
-const AuthProvider = ({children}) => {
-    const [state,dispatch] = useReducer(reducer,initialData);
-    const [edit,setEdit] = useState(false)
-    // const [recordState, recordDispatch] = useReducer(reducer,initialRecord)
-console.log("state data",state);
-    // load state from local storage on component mount
-    useEffect(() => {
-      const storedAuthState = localStorage.getItem('authState');
-      if (storedAuthState) {
-        dispatch({type: 'LOAD_FROM_STORAGE', state:JSON.parse(storedAuthState)});
-      }
-    }, [])
-    
-    // update local storage when state changes 
-    // useEffect(() => {
-    //   localStorage.setItem('authState',JSON.stringify(state))
-    // }, [state]);
+  return useContext(AuthContext);
+};
+// const initialRecord = []h
+// AuthProvider component to provide authentication state and action
+const AuthProvider = ({ children }) => {
+  const [state, dispatch] = useReducer(reducer, initialData);
+  const [edit, setEdit] = useState(false);
+  useEffect(() => {
+    const storedAuthState = localStorage.getItem("authState");
+    if (storedAuthState) {
+      dispatch({
+        type: "LOAD_FROM_STORAGE",
+        state: JSON.parse(storedAuthState),
+      });
+    }
+  }, []);
 
-    const handleChange = (e) => {
-      console.log(e.target.value);
-      if (e.target.type === "file") {
-        const file = e.target.files[0];
-        const reader = new FileReader();
-        reader.onloadend = () => {
-          // dispatch({type: "INPUT_CHANGE", field: e.target.name, value: URL.createObjectURL(e.target.files[0])})
-          dispatch({
-            type: "INPUT_CHANGE",
-            field: e.target.name,
-            value: reader.result,
-          });
-        };
-        if (file) {
-          reader.readAsDataURL(file);
-        }
-      }else{
+  const handleChange = (e) => {
+    const { name, value, files, type } = e.target;
+    if (type === "file") {
+      const file = files[0];
+      const reader = new FileReader();
+      reader.onloadend = () => {
         dispatch({
-          type: 'INPUT_CHANGE',
-          field: e.target.name,
-          value: e.target.value
+          type: "INPUT_CHANGE",
+          field: name,
+          value: reader.result,
         });
+      };
+      if (file) {
+        reader.readAsDataURL(file);
       }
-      console.log(state,"state");
-    };
-    const handleSubmit = async (e) => {
-      
-      if (edit) {
-        const updatedProfile = state.user.map((item) =>
-          item.id === e
-            ? {
-                ...item,
-                name: state.name,
-                username: state.username,
-                address: state.address,
-                zipCode: state.zipCode,
-                mobile: state.mobile,
-                email: state.email,
-              }
-            : item
-            )
-            dispatch({ type: 'SUBMIT_SUCCESS', user: updatedProfile });
-            setEdit(false)
-      }
-      else{
-        e.preventDefault();
-      const existingData =  JSON.parse(localStorage.getItem('registrationData')) || []
-      const payload = [...existingData, 
+    } else {
+      dispatch({
+        type: "INPUT_CHANGE",
+        field: name,
+        value: value,
+      });
+    }
+  };
+  const handleSubmit = (e) => {
+    if (edit) {
+      const updatedProfile = state.user.map((item) =>
+        item.id === e
+          ? {
+              ...item,
+              name: state.name,
+              username: state.username,
+              address: state.address,
+              zipCode: state.zipCode,
+              mobile: state.mobile,
+              email: state.email,
+            }
+          : item
+      );
+      dispatch({ type: "SUBMIT_SUCCESS", user: updatedProfile });
+      setEdit(false);
+    } else {
+      e.preventDefault();
+      const existingData =
+        JSON.parse(localStorage.getItem("signupRecord")) || [];
+      const payload = [
+        ...existingData,
         {
-           id: Math.floor(Math.random()*10), 
-           name: state.name,
-            username: state.username,
-            password: state.password,
-            address: state.address,
-            zipCode: state.zipCode,
-            mobile: state.mobile,
-            img: state.img,
-            email: state.email,
-         }];
-      dispatch({ type: 'SUBMIT_SUCCESS', user: payload });
-      dispatch({type: "INPUT_CLEAR"})
-      console.log(state?.user);
-        }
-    //   try {
-    //     const response = await fetch(endpoint, {
-    //       method: 'POST',
-    //       headers: { 'Content-Type': 'application/json' },
-    //       body: JSON.stringify(payload),
-    //     });
-  
-    //     if (!response.ok) {
-    //       throw new Error('Network response was not ok');
-    //     }
-  
-    //     const data = await response.json();
-    //     dispatch({ type: 'SUBMIT_SUCCESS', user: data.user });
-    //   } catch (error) {
-    //     dispatch({ type: 'SUBMIT_FAILURE', error: error.message });
-    //   }
-    };
-    useEffect(()=>{
-      localStorage.setItem("registrationData",JSON.stringify(state?.user))
-    },[state?.user])
-    const toggleForm = () => {
-        dispatch({ type: 'TOGGLE_FORM' });
-    };
-    const handleUserDelete = (id) => {
-      const newCategory = state?.user?.filter((item) => item?.id !== id);
-      dispatch({ type: "SUBMIT_SUCCESS", user: newCategory });
+          id: Math.floor(Math.random() * 10),
+          name: state.name,
+          username: state.username,
+          password: state.password,
+          address: state.address,
+          zipCode: state.zipCode,
+          mobile: state.mobile,
+          img: state.img,
+          email: state.email,
+        },
+      ];
+      dispatch({ type: "SUBMIT_SUCCESS", user: payload });
+      dispatch({ type: "INPUT_CLEAR" });
     }
-    const handleUserSearch = (e) => {
-      const filterItems = state?.user?.filter((item)=> item?.name.toLowerCase().includes(e.target.value) || item?.username.toLowerCase().includes(e.target.value))
-    console.log(filterItems);
-    dispatch({type: "SEARCH_ITEMS", value: filterItems})
+  };
+  const handleUpdate = (id) => {
+    const obj = {
+      name: "",
+      username: "",
+      address: "",
+      zipCode: "",
+      mobile: "",
+      email: "",
+    };
+    for (let i = 0; i < state?.user?.length; i++) {
+      if (state?.user[i]?.id === id) {
+        obj.name = state?.user[i]?.name;
+        obj.username = state?.user[i]?.username;
+        obj.address = state?.user[i]?.address;
+        obj.zipCode = state?.user[i]?.zipCode;
+        obj.mobile = state?.user[i]?.mobile;
+        obj.email = state?.user[i]?.email;
+      }
     }
-    return <AuthContext.Provider value={{state, edit, setEdit,handleChange,toggleForm,handleSubmit,handleUserDelete,handleUserSearch}}>
-        {children}
+    dispatch({
+      type: "EDIT_INPUTS_CHANGE",
+      name: obj.name,
+      username: obj.username,
+      address: obj.address,
+      mobile: obj.mobile,
+      email: obj.email,
+      zipCode: obj.zipCode,
+    });
+  };
+  useEffect(() => {
+    localStorage.setItem("signupRecord", JSON.stringify(state?.user));
+  }, [state?.user]);
+  const toggleForm = () => {
+    dispatch({ type: "TOGGLE_FORM" });
+  };
+  const handleUserDelete = (id) => {
+    const newCategory = state?.user?.filter((item) => item?.id !== id);
+    dispatch({ type: "SUBMIT_SUCCESS", user: newCategory });
+  };
+  const handleUserSearch = (e) => {
+    const filterItems = state?.user?.filter(
+      (item) =>
+        item?.name.toLowerCase().includes(e.target.value) ||
+        item?.username.toLowerCase().includes(e.target.value)
+    );
+    dispatch({ type: "SEARCH_ITEMS", value: filterItems });
+  };
+  const userCount = state?.user.length;
+  return (
+    <AuthContext.Provider
+      value={{
+        state,
+        userCount,
+        edit,
+        setEdit,
+        handleChange,
+        handleUpdate,
+        toggleForm,
+        handleSubmit,
+        handleUserDelete,
+        handleUserSearch,
+      }}
+    >
+      {children}
     </AuthContext.Provider>
-}
-export {AuthProvider,useAuth,AuthContext}
+  );
+};
+export { AuthProvider, useAuth, AuthContext };

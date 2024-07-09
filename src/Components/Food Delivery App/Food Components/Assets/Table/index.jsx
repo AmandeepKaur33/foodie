@@ -22,7 +22,7 @@ const Table = () => {
             <td className=' py-4 px-3 text-gray-500 font-semibold'>{item?.CName}</td>
             <td className=' py-4 px-3 text-gray-500 font-semibold'><img src={item?.CatImg} width={56} alt={item.CName}/></td>
             <td className='py-4 px-3   text-center'>
-              <button className={`${item?.CatStatus? 'bg-teal-300 px-6 py-1 text-sm' : 'bg-red-500 px-2 py-1 text-sm'} text-white rounded-3xl text-center `}>{item.CatStatus ? "Active" : "Out of stock"}</button>
+              <button className={`${item?.CatStatus? 'bg-teal-300 px-6 py-1 text-sm' : 'bg-red-500 px-2 py-1 text-sm'} text-white rounded-3xl text-center `}>{item.CatStatus ? "Active" : "In-Active"}</button>
             </td>
             <td className=' py-4 px-3 text-gray-500 font-semibold'>{item?.CreatedDate}</td>
             <td className=' py-4 mt-3 px-3 text-gray-500 font-semibold flex items-center gap-2'>

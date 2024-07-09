@@ -1,6 +1,6 @@
-import React from 'react'
-import { useAuth } from '../../../Context/Authentication Context/Signup'
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../../Context/Authentication Context/Signup';
 
 const Signup = () => {
     const {state,handleChange,handleSubmit} = useAuth();

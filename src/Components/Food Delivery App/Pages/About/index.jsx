@@ -1,7 +1,5 @@
-import React from 'react'
-// import { Navbar } from '../../Food Components/Header'
-import About from '../../Food Components/About'
-// import Foodfooter from '../../Food Components/Footer'
+import React from 'react';
+import About from '../../Food Components/About';
 
 const Aboutpage = () => {
   console.log(localStorage.getItem("productsData"));
@@ -9,10 +7,7 @@ const Aboutpage = () => {
     console.log("check login data", initial);
   return (
     <div className='w-full'>
-       {/* <Navbar /> */}
         <About />
-        {/* <Foodfooter /> */}
-        
     </div>
   )
 }

@@ -1,5 +1,6 @@
 import React, { createContext, useEffect, useReducer } from "react";
 import CategoryReducer from "../../Reducers/Admin Reducers/CategoryReducers";
+import { toast } from "react-toastify";
 
 const CategoryContext = createContext();
 
@@ -12,9 +13,6 @@ const intialData = {
   showCategories: JSON.parse(localStorage.getItem("categoryData")) || [],
   isEdit: false,
 };
-// localStorage.removeItem("categoryData")
-console.log("chhhh", JSON.parse(localStorage.getItem("categoryData")));
-
 const CategoryProvider = ({ children }) => {
   const [state, dispatch] = useReducer(CategoryReducer, intialData);
   const handleChange = (e) => {
@@ -23,10 +21,8 @@ const CategoryProvider = ({ children }) => {
       field: e.target.name,
       value: e.target.value,
     });
-    console.log(state);
   };
   const handleStatus = (e) => {
-    // console.log(e.target.checked);
     dispatch({
       type: "INPUT_CHANGE",
       field: e.target.name,
@@ -37,7 +33,6 @@ const CategoryProvider = ({ children }) => {
     const file = e.target.files[0];
     const reader = new FileReader();
     reader.onloadend = () => {
-      // dispatch({type: "INPUT_CHANGE", field: e.target.name, value: URL.createObjectURL(e.target.files[0])})
       dispatch({
         type: "INPUT_CHANGE",
         field: e.target.name,
@@ -47,7 +42,6 @@ const CategoryProvider = ({ children }) => {
     if (file) {
       reader.readAsDataURL(file);
     }
-    console.log("jk", URL.createObjectURL(e.target.files[0]));
   };
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -63,6 +57,7 @@ const CategoryProvider = ({ children }) => {
           : item
       );
       dispatch({ type: "SUBMIT", categories: updatedCategories });
+      toast.success(`${state?.CName} category updated successfully`);
       dispatch({ type: "SET_CLEAR" });
     } else {
       const existingData =
@@ -77,26 +72,23 @@ const CategoryProvider = ({ children }) => {
         },
       ];
       dispatch({ type: "SUBMIT", categories: payload });
-      alert("submit");
+      toast.success(`${state?.CName} added in categories`);
       dispatch({ type: "SET_CLEAR" });
-      // localStorage.setItem('categoryData',JSON.stringify(state?.categories))
-      console.log("submit", state?.categories);
     }
   };
   useEffect(() => {
     localStorage.setItem("categoryData", JSON.stringify(state?.categories));
   }, [state?.categories]);
   const handleDelete = (id) => {
-    // localStorage.removeItem("categoryData");
-    console.log(state?.categories, "and", id);
+    let removedItem;
     const newCategory = state?.categories?.filter((item) => item?.CatId !== id);
+    state?.categories?.map((item) =>
+      item?.CatId !== id ? "" : (removedItem = item?.CName)
+    );
     dispatch({ type: "SUBMIT", categories: newCategory });
-    // console.log(e);
-    // dispatch({type: "DELETE_ITEM", currId: id})
+    toast.warning(`${removedItem} removed from Categories`);
   };
   const handleUpdate = (id) => {
-    const updateItem = state?.categories?.filter((item) => item?.CatId === id);
-
     const obj = {
       CName: "",
       CatImg: "",
@@ -111,10 +103,6 @@ const CategoryProvider = ({ children }) => {
         obj.CatId = state?.categories[i]?.CatId;
       }
     }
-    console.log(obj.CatStatus);
-    // const updateItem = state?.categories?.filter((item)=> item?.CatId === id)
-    // console.log("upItem",updateItem,updateItem?.map((i)=>i.CName),updateItem.map((element)=> Object.keys(element)));
-    // dispatch({type: "INPUT_CHANGE", field: updateItem.map((element)=> Object.keys(element)), value: updateItem.map((element)=> Object.values(element))})
     dispatch({
       type: "EDIT_INPUTS_CHANGE",
       CName: obj.CName,
@@ -123,18 +111,16 @@ const CategoryProvider = ({ children }) => {
       CatId: obj.CatId,
       isEdit: true,
     });
-    console.log("state", state);
   };
   const handleReset = () => {
-    dispatch({type: "SET_CLEAR"})
-  }
+    dispatch({ type: "SET_CLEAR" });
+  };
   const handleSearch = (e) => {
-    console.log(e.target.value);
-    const filterItems = state?.categories?.filter((item)=> item?.CName.toLowerCase().includes(e.target.value))
-    console.log(filterItems);
-    dispatch({type: "SEARCH_ITEMS", value: filterItems})
-    console.log("search", state?.showCategories);
-  }
+    const filterItems = state?.categories?.filter((item) =>
+      item?.CName.toLowerCase().includes(e.target.value)
+    );
+    dispatch({ type: "SEARCH_ITEMS", value: filterItems });
+  };
   return (
     <CategoryContext.Provider
       value={{
@@ -147,7 +133,7 @@ const CategoryProvider = ({ children }) => {
         handleDelete,
         handleUpdate,
         handleReset,
-        handleSearch
+        handleSearch,
       }}
     >
       {children}

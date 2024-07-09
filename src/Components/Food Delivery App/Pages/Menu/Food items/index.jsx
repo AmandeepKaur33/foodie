@@ -1,59 +1,24 @@
-import React, { useContext, useEffect, useState } from 'react'
-// import Button from '../../../Food Components/Button'
-import cartImg from '../../../../Images/cart.svg'
-import {  useGlobalContext } from '../../../../Context/context'
-import { useNavigate } from 'react-router-dom'
-import { LoginContext } from '../../../../Context/Authentication Context/LoginContext'
+import React, { useContext } from 'react'
 import { CartContext } from '../../../../Context/Customer Context/CartContext'
-
 const FoodItems = ({items}) => {
-  const {handleCart} = useContext(CartContext)
-  // const {loginState} = useContext(LoginContext)
-  // const initial = JSON.parse(window.localStorage.getItem('cart') || "[]")
-  // const [cart,setCart] = useState(initial)
-  // const [{login}] = useGlobalContext()
-  // const navigateLogin = useNavigate()
-  // console.log("initial",initial);
-  // console.log(localStorage.getItem("cart"));
-  // const handleCart = () => {
-  //    if (!loginState?.isAuthenticated) {
-  //     navigateLogin("/Login")
-  //    }
-  //    else{
-  //     setCart([...cart,{
-  //       img: items?.img,
-  //        item_name: items?.item_name, 
-  //        price: items?.price
-  //       }])
-  //    }
-  //   setCart([...cart,{
-  //         img: items?.img,
-  //          item_name: items?.item_name, 
-  //          price: items?.price
-  //         }])
-  // }
-  // useEffect(() => {
-  //  window.localStorage.setItem('cart',JSON.stringify(cart))
-  // }, [cart])
-  
-  // console.log(img);
-  // console.log("cart details",img,item_name,price);
+  const {handleCart} = useContext(CartContext);
   return (
-    <div className='w-1/4 h-[30rem] bg-gray-800 text-white'>
-        <div className='w-full flex justify-center items-center h-3/5 bg-slate-50 rounded-es-[36px] group'>
-            <img src={items.PImg} className='w-56 group-hover:scale-110 group-hover:transition-all ' alt={items.PName} />
-        </div>
-        <div className=' m-4'>
-        <h1 className='text-2xl font-medium '>{items.PName}</h1>
-        <p className='mt-2 text-zinc-400'>{items.PDesc}</p>
-        <div className='w-full flex items-center justify-between my-4'>
-          <h2 className='text-lg font-normal'>${items.Price}</h2>
-          <div className='bg-yellow-500 w-10 flex items-center justify-center h-10 rounded-full '>
-            <img onClick={() => handleCart(items)} src={cartImg} aria-hidden="true" className='text-white w-6' alt='cart'  />
-          </div>
-        </div>
-        </div>
-    </div>
+  
+    <div className='w-[23%] h-[26rem] relative bg-white gap-5 pb-4 shadow-md rounded-2xl text-black flex items-start px-4 flex-col mt-10'>
+      <div className='w-full h-2/5 flex justify-center'>
+      <img src={items?.PImg} alt={items?.PName} className='w-48 h-48 drop-shadow-xl absolute rounded-full -top-12' />
+      </div>
+      <h1 className='text-2xl font-semibold font-sans text-gray-800'>{items?.PName}</h1>
+      <div className='w-full flex gap-1 items-center'>
+      <h1 className='px-4 bg-green-300 text-green-900 rounded-xl'>{items?.Cat}</h1>
+      <h1 className='px-4 bg-amber-200 text-amber-900 rounded-xl'>${items?.Price}</h1>
+      <h1 className='px-4 bg-fuchsia-200 text-fuchsia-900 rounded-xl'>Available</h1>
+      </div>
+      <p className='text-base text-gray-500 h-20 '>{items?.PDesc}</p>
+      <div className='flex items-end justify-center  h-[6vh] w-full'>
+        <button  onClick={() => handleCart(items)} className='text-base bg-blue-500 py-2 px-4 text-white'><i className='fa-solid fa-cart-shopping mr-2'></i>Add To Cart</button>
+      </div>
+   </div>
   )
 }
 

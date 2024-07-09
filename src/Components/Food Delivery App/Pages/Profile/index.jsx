@@ -7,7 +7,7 @@ import History from "./Profile Components/Purchashed History/History Helper";
 const Profile = () => {
   const { loginState } = useContext(LoginContext);
   const [historyDisplayToggle, setHistoryDisplayToggle] = useState(false)
-  const { state , edit, setEdit, handleSubmit} = useAuth();
+  const { state , edit, setEdit, handleUpdate,handleSubmit} = useAuth();
   const userInfo = {
     name: "",
     username: "",
@@ -15,10 +15,12 @@ const Profile = () => {
     email: "",
     address: "",
     mobile: "",
-    zipCode: ""
+    zipCode: "",
+    id: ""
   };
   state?.user?.map((item) => {
     if (item?.id === loginState?.user?.CId) {
+      userInfo.id = item?.id;
       userInfo.name = item?.name;
       userInfo.username = item?.username;
       userInfo.img = item?.img;
@@ -46,8 +48,11 @@ const Profile = () => {
             <h3>{userInfo.username}</h3>
             <h3>{userInfo.email}</h3>
             {!historyDisplayToggle &&
-            edit ? <i onClick={()=>console.log("hello")} className="fa-solid fa-check text-center py-1 text-[#FC6180] mt-5  w-10 rounded-2xl border-[#FC6180] border"></i> :
-            <i onClick={()=>setEdit(true)} className="fa-solid fa-pencil text-center py-1 text-[#FC6180] mt-5  w-10 rounded-2xl border-[#FC6180] border"></i>
+            edit ? <i onClick={()=>handleSubmit(loginState?.user?.CId)} className="fa-solid fa-check text-center py-1 text-[#FC6180] mt-5  w-10 rounded-2xl border-[#FC6180] border"></i> :
+            <i onClick={()=>{
+              setEdit(true)
+              handleUpdate(userInfo.id)
+            }} className="fa-solid fa-pencil text-center py-1 text-[#FC6180] mt-5  w-10 rounded-2xl border-[#FC6180] border"></i>
 }
           </div>
         </div>

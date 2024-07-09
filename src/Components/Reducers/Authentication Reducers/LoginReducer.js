@@ -18,6 +18,11 @@
             ...state,
             [action.field] : action.value,
           }
+        case 'SUBMIT_LOGIN':
+          return{
+            ...state,
+            submit: action.submit
+          }
       default:
         return state;
     }

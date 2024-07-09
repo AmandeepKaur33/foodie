@@ -5,7 +5,6 @@ import { LoginContext } from '../../../../Context/Authentication Context/LoginCo
 const InvoiceInfo = () => {
     const {paymentState} = useContext(PaymentContext);
     const {loginState} = useContext(LoginContext);
-    // console.log(paymentState?.orderDetails,loginState?.user?.CId);
   return (
     <table className="w-11/12 text-left mt-3 border">
             <thead>

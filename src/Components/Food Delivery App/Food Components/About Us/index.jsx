@@ -1,0 +1,67 @@
+import React, { useContext } from 'react';
+// import bg from '../../../Images/assets/footer.jpeg';
+import Aboutpage from '../../Pages/About';
+import { PaymentContext } from '../../../Context/Customer Context/PaymentContext';
+import ContentIntro from '../Assets/Starting Block';
+import img1 from '../../../Images/assets/images.png'; 
+import chef from '../../../Images/assets/staff.png'; 
+import homeDelivery from '../../../Images/assets/downloadpic.jpeg'; 
+import foodCategory from '../../../Images/assets/multiple-category.jpeg';
+import OfferCards from '../Assets/Offer Cards';
+import spiceImg from '../../../Images/assets/spice-removebg-preview.png';
+import Review from '../Review';
+
+const AboutUs = () => {
+  const {paymentState} = useContext(PaymentContext);
+  const offersList = [
+    {
+      img: homeDelivery,
+      title: "Home Delivery",
+      desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur, labore."
+    },
+    {
+      img: chef,
+      title: "Experinced Staff",
+      desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur, labore."
+    },
+    {
+      img: foodCategory,
+      title: "Multiple Categories",
+      desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur, labore."
+    },
+    {
+      img: img1,
+      title: "Easy Payment",
+      desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur, labore."
+    },
+  ]
+  return (
+    <div className='w-full'>
+      <div className='w-full relative flex items-center justify-center'>
+      <ContentIntro title="We Are Foodies" desc="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Est porro qui, consequatur praesentium illum laborum ea earum dolorem odit aut saepe, numquam quia accusamus! Ipsa consequuntur aperiam rem quo magni!"/>
+      <div className='absolute w-11/12 h-96 pl-4  gap-16 inset-y-3/4 flex items-start pt-5 justify-evenly bottom-0'>
+      {offersList?.map((item,index)=>(
+        <OfferCards key={index} item={item}/>
+      ))}
+      </div>
+      </div>
+      <div className='w-full h-[60vh]'></div>
+        <Aboutpage/>
+      <div className='w-full h-[60vh] pb-12 flex items-center justify-center'>
+        <div className='w-full relative px-14  h-full flex flex-col gap-6 justify-center'>
+        <h1 className='text-4xl px-9 bg-blue-200 py-3 rounded-2xl h-2/5 w-2/5 leading-[3.3rem] font-semibold text-center'>Get Your Order With Trusted People</h1>
+        <div className='w-2/5 shadow bg-white absolute right-12 bottom-2 p-3 items-end'>
+        <p className='text-center  text-gray-500'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur atque, eveniet alias adipisci velit nemo doloremque laborum odio asperiores repellat dolore mollitia obcaecati, sapiente libero voluptas beatae iusto odit in debitis placeat! Culpa, labore eius.</p>
+        <div className='w-1/2 h-4/5 absolute right-[95%] rounded-full bottom-2/4 -z-10'>
+        <img src={spiceImg} alt="spice image" className='w-56 absolute  right-6 -inset-y-16 ' />
+        </div>
+        {/* <div className='w-5 absolute -top-3 left-[48%] -rotate-45 h-5 border-l-4 border-b-4'></div> */}
+        </div>
+        </div>
+      </div>
+      <Review/>
+    </div>
+  )
+}
+
+export default AboutUs

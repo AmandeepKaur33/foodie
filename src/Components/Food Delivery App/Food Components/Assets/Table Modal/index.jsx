@@ -14,7 +14,6 @@ const TableModal = ({setShowDetails,showDetails}) => {
         <thead className='flex flex-col w-1/3 '>
         <tr className='flex flex-col items-start text-black'>
             <th>Name:</th>
-            <th>Description:</th>
             <th>Price:</th>
             <th>Quantity:</th>
             <th>Category:</th>
@@ -23,7 +22,6 @@ const TableModal = ({setShowDetails,showDetails}) => {
         <tbody className='w-9/12 '>
             <tr className='flex flex-col items-start'>
                 <td>{showDetails?.obj?.PName}</td>
-                <td>{showDetails?.obj?.PDesc}</td>
                 <td>{showDetails?.obj?.Price}</td>
                 <td>{showDetails?.obj?.Qty}</td>
                 <td>{showDetails?.obj?.Cat}</td>
@@ -45,7 +43,7 @@ const TableModal = ({setShowDetails,showDetails}) => {
         </div>
       </div>
       <div
-        className="absolute top-1 right-1 px-2 text-white bg-red-500"
+        className="absolute top-1 right-1 px-2 text-white bg-red-500 cursor-pointer"
         onClick={() => setShowDetails({id: "", toggle: false})}
       >
         X

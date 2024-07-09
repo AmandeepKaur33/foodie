@@ -36,16 +36,15 @@ const Payment = () => {
     }
   ]
   const handleSubmit = () => {
-    // console.log(validateForm());
  if (validateForm()) {
     const existingData =  JSON.parse(localStorage.getItem("paymentInfo")) || [];
     const existingOrderData =  JSON.parse(localStorage.getItem("ordersInfo")) || [];
-    const OrderId = uuid();
     const filterCartData = cartState?.cartItems?.filter((i) => i?.CId === loginState?.user?.CId)
-      const updatedQuantities = filterCartData.map(element => ({
-        id: element?.PId,
-        qty: element?.cartQty
-      }));
+    const updatedQuantities = filterCartData.map(element => ({
+      id: element?.PId,
+      qty: element?.cartQty
+    }));
+    const OrderId = uuid();
       const newOrderDetails = filterCartData?.map(element => (
         {
           OrderId: OrderId,
@@ -88,11 +87,6 @@ const Payment = () => {
           handleQtyUpdate(id, qty);
       }, 3000); // 3000 milliseconds delay        
       });
-      // filterCartData.forEach(element => {
-      //   // console.log(element?.cartQty,element?.PId);
-      //   handleQtyUpdate(element?.PId,element?.cartQty)
-      // });
-      // console.log(filterCartData);
     
     // handleQty()
     paymentDispatch({type: "SET_CLEAR"})
@@ -139,9 +133,6 @@ else{
                 <button onClick={(e)=>{
                   e.preventDefault()
                   handleSubmit();
-                  // handleDeleteCart(loginState?.user?.CId)
-                //   {paymentState?.submit &&  navigate("/Invoice")}
-                //  console.log(paymentState);
 
                 }} className='w-full text-center py-1 bg-blue-400 text-white rounded-md'>Confirm Payment</button>
               </div>

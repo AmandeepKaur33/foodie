@@ -110,7 +110,7 @@ const Product = () => {
             <tbody className="">
               {prodState?.showProducts?.map((item) => (
                 <tr className=" " key={item?.PId}>
-                  <td className=" py-4 px-3 text-gray-500 font-semibold flex items-center gap-2">
+                  <td className=" py-4 px-3 text-gray-500 font-semibold flex items-center gap-4">
                     <span
                       onClick={() =>
                         setShowDetails({
@@ -119,7 +119,7 @@ const Product = () => {
                           obj: { ...item },
                         })
                       }
-                      className="w-4  outline outline-offset-2 h-4 pb-1 p outline-stone-600 flex items-center text-base justify-center text-white  bg-blue-500 rounded-full"
+                      className="w-4 cursor-pointer outline outline-offset-2 h-4 pb-1  outline-stone-600 flex items-center text-base justify-center text-white  bg-blue-500 rounded-full"
                     >
                       +
                     </span>
@@ -131,7 +131,7 @@ const Product = () => {
                   <td className="py-4 px-3 text-gray-500 font-semibold text-center ">
                     {item?.Price}
                   </td>
-                  <td className=" py-4 px-3 text-gray-500 font-semibold text-center">
+                  <td className={`py-4 px-3 text-gray-500 ${item?.Qty === 'Out of Stock' && 'text-red-500'} font-semibold text-center`}>
                     {item?.Qty}
                   </td>
                   <td className=" py-4 px-3 text-gray-500 font-semibold text-center">

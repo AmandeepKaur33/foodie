@@ -1,21 +1,18 @@
 import React from "react";
-// import { Navbar } from "../Header";
 import { Slider } from "../Slider";
 import Category from "../Category";
 import About from "../About";
-// import { Navbar } from "../Header";
-// import Foodfooter from "../Footer";
-// import Foodfooter from "../Footer";
-
+import Review from "../Review";
+import GetApp from "../App";
 
 const Landing = () => {
     return(
-        <section>
-            {/* <Navbar /> */}
+        <section className="w-[100vw] overflow-x-hidden">
             <Slider />
             <Category />
             <About />
-            {/* <Foodfooter /> */}
+            <Review/>
+            <GetApp/>
         </section>
     )
 }

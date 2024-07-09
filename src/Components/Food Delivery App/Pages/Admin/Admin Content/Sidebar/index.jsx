@@ -1,6 +1,7 @@
 import React from 'react'
 import Navigationpanel from './Navigation'
-import { useContext } from 'react'
+import { useContext } from 'react';
+import logoImg from '../../../../../Images/assets/spices-removebg-preview.png';
 import { LoginContext } from '../../../../../Context/Authentication Context/LoginContext'
 import { useNavigate } from 'react-router-dom'
 
@@ -41,24 +42,18 @@ const Sidebar = () => {
         {
             desc: "Contact / Feedback",
             nav: "Contact",
-            link: "/Admin/Contact",
-            img: "fa-regular fa-comments"
-        },
-        {
-            desc: "Report",
-            nav: "Selling Report",
-            link: "Selling Report",
+            link: "/feedback",
             img: "fa-regular fa-comments"
         },
     ]
   return (
     <div className='w-1/5 border-r-2 h-full overflow-auto'>
-        <div className='mx-2 my-2 bg-blue-500 px-3 py-1 rounded-2xl text-white flex items-center justify-between'>
-            <h1>Logo</h1>
-            <button onClick={()=> {
+        <div className='mx-2 my-2 py-1  text-blue-500 flex items-center justify-between border-b border-b-gray-300'>
+        <div className='text-lg text-blue-500  font-bold rounded-2xl flex items-center gap-1 '><img src={logoImg} className="w-9" alt="" />Foodies Point</div>
+            {/* <button onClick={()=> {
                 logout();
                 navigate("/")
-            }}>Logout</button>
+            }}>Logout</button> */}
         </div>
         {navList.map((item,index)=>(
             <Navigationpanel key={index} list={item}/>

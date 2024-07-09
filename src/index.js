@@ -12,6 +12,8 @@ import { CategoryProvider } from "./Components/Context/Admin Context/CategoryCon
 import { ProductProvider } from "./Components/Context/Admin Context/ProductsContext";
 import { CartProvider } from "./Components/Context/Customer Context/CartContext";
 import { PaymentProvider } from "./Components/Context/Customer Context/PaymentContext";
+import { ReportProvider } from "./Components/Context/Admin Context/ReportContext";
+import { FeedbackProvider } from "./Components/Context/Customer Context/FeedbackContext";
 // import { AuthProvider } from "./Components/Context/SignupIn";
 // import { AppProvider, LoginContext } from "./Components/Context/context";
 // import store from "./store";
@@ -26,10 +28,14 @@ root.render(
     <CartProvider>
         <ProductProvider>
 <PaymentProvider>
+  <ReportProvider>
+    <FeedbackProvider>
   <BrowserRouter>
       <App />
     <ToastContainer />
   </BrowserRouter>
+  </FeedbackProvider>
+    </ReportProvider>
   </PaymentProvider>
   </ProductProvider>
   </CartProvider>

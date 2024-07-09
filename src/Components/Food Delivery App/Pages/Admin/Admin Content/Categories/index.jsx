@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import Buttons from "../../../../Food Components/Assets/Button";
 import Table from "../../../../Food Components/Assets/Table";
 import { CategoryContext } from "../../../../../Context/Admin Context/CategoryContext";
@@ -6,11 +6,6 @@ import { CategoryContext } from "../../../../../Context/Admin Context/CategoryCo
 const Categories = () => {
   const { state, handleChange, handleSubmit, handleImg, handleStatus, handleReset, handleSearch } =
     useContext(CategoryContext);
-  // const [catData,setCatData] = useState(state?.categories)
-  // console.log("catData",catData);
-  // const handleSearch = (e) => {
-  //   // setCatData(catData?.filter((item)=>item?.CName.toLowerCase().includes(e.target.value)))
-  // }
   return (
     <div className="w-full h-[calc(100vh-20vh)] flex gap-6  bg-white px-6 py-12 my-1 mx-auto ">
       <div className="w-2/5">

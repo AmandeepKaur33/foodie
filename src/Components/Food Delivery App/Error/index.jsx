@@ -6,6 +6,7 @@ const Message = () => {
   return (
     <div>
         <Navbar />
+        <div className='w-full h-[calc(100vh-46px)]'></div>
         <Foodfooter />
     </div>
   )

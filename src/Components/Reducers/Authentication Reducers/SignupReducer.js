@@ -15,6 +15,16 @@ const AuthReducer = (state,action) => {
                 ...state,
                 showUsers: action.value
             }
+            case "EDIT_INPUTS_CHANGE":
+            return{
+                ...state,
+                name: action.name,
+                username: action.username,
+                address: action.address,
+                mobile: action.mobile,
+                email: action.email,
+                zipCode: action.zipCode
+            }
         case "INPUT_CLEAR":
             return{
                 ...state,
