@@ -35,7 +35,10 @@ const OrderStatus = () => {
            <div className="flex items-center gap-3">
              <button
                className="px-5 py-1  bg-blue-400 text-white text-base font-medium"
-               onClick={handleStatusUpdate}
+               onClick={()=> {
+                handleStatusUpdate();
+                setEditStatus(false);
+               }}
                >
                Update
              </button>

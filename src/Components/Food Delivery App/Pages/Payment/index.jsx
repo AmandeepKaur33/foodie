@@ -80,14 +80,17 @@ const Payment = () => {
     paymentDispatch({ type: "SUBMIT", payload: payloadData , orderPayload: payloadOrders});
     console.log(paymentState?.paymentRecords,"pr");
     handleDeleteCart(loginState?.user?.CId)
-  
+  const updateId = [{id: "", qty: ""}]
       // Dispatch all updates together
       updatedQuantities.forEach(({ id, qty }) => {
-        setTimeout(() => {
-          handleQtyUpdate(id, qty);
-      }, 3000); // 3000 milliseconds delay        
+        updateId.push({id,qty})
+      //   setTimeout(() => {
+      //     handleQtyUpdate(id, qty);
+      // }, 3000); // 3000 milliseconds delay       
+       
       });
-    
+      updateId.map((item)=> handleQtyUpdate(item?.id,item?.qty))
+    console.log(updateId,"upId");
     // handleQty()
     paymentDispatch({type: "SET_CLEAR"})
     toast("submit");

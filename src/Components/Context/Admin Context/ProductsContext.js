@@ -128,7 +128,7 @@ const ProductProvider = ({ children }) => {
     });
   };
   const handleQtyUpdate = (id, qty) => {
-    const updatedQuantity = prodState.products.map((item) =>
+    const updatedQuantity = prodState.showProducts.map((item) =>
       item.PId === id
         ? {
             ...item,
@@ -139,6 +139,7 @@ const ProductProvider = ({ children }) => {
 
     // Dispatch action to update state with the new array of products
     prodDispatch({ type: "SUBMIT", products: updatedQuantity });
+    console.log(prodState?.products,"p");
   };
 
   const handleProdSearch = (e) => {

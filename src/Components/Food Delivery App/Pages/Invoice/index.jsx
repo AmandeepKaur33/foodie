@@ -3,7 +3,7 @@ import InvoiceInfo from './Invoice Details';
 
 const Invoice = () => {
   return (
-    <div className='w-full  h-[80vh] flex items-center justify-center'>
+    <div className='w-full  flex items-center justify-center'>
       <InvoiceInfo/>
     </div>
   )
