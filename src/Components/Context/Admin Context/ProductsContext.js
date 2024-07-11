@@ -21,9 +21,6 @@ const initialData = {
 
 const ProductProvider = ({ children }) => {
   const [prodState, prodDispatch] = useReducer(ProductReducer, initialData);
-  // useEffect(()=>{
-  //   getProducts().then(foods => prodDispatch({type: "SUBMIT", products: foods})).catch((error)=>console.log(error))
-  // },[])
   
   const handleProdChange = (e) => {
     if (e.target.type === "file") {
