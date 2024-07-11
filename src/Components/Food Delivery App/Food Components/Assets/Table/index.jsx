@@ -27,7 +27,7 @@ const Table = () => {
             <td className=' py-4 px-3 text-gray-500 font-semibold'>{item?.CreatedDate}</td>
             <td className=' py-4 mt-3 px-3 text-gray-500 font-semibold flex items-center gap-2'>
               <i onClick={()=>handleUpdate(item?.CatId)} className='fa-solid fa-pencil bg-blue-500 px-3 py-1 text-xs rounded-xl text-white '></i>
-              <i onClick={()=>handleDelete(item?.CatId)} className='fa-solid fa-cancel bg-[#FC6180] px-3 py-1 text-xs rounded-xl text-white '></i>
+              <i onClick={()=>handleDelete(item?.CatId)} className='fa-solid fa-trash bg-[#FC6180] px-3 py-1 text-xs rounded-xl text-white '></i>
             </td>
           </tr>
         ))}

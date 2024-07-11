@@ -1,19 +1,19 @@
-import React, { useEffect } from "react";
+import React from "react";
 import herobanner from "../../../Images/assets/foodimg-removebg-preview.png";
 import bgBanner from "../../../Images/delevery-bg1.png";
 import Button from "../Button";
 
 const Slider = () => {
-    useEffect(()=>{
-        const now = new Date().getTime();
-        const expirationTime = 24 * 60 * 60 * 1000;
-        Object.keys(localStorage).forEach((key) => {
-            const item = JSON.parse(localStorage.getItem(key));
-            if (item && item.timestamp && now - item.timestamp > expirationTime) {
-                localStorage.removeItem(key);
-            }
-        });
-    },[])
+    // useEffect(()=>{
+    //     const now = new Date().getTime();
+    //     const expirationTime = 24 * 60 * 60 * 1000;
+    //     Object.keys(localStorage).forEach((key) => {
+    //         const item = JSON.parse(localStorage.getItem(key));
+    //         if (item && item.timestamp && now - item.timestamp > expirationTime) {
+    //             localStorage.removeItem(key);
+    //         }
+    //     });
+    // },[])
 
   return (
     <div className="w-full h-[100vh] bg-gradient-to-b to-blue-50 from-white bg-blue-100 bg-no-repeat  pt-10 relative">

@@ -1,6 +1,8 @@
 import React, { createContext, useEffect, useReducer } from "react";
 import ProductReducer from "../../Reducers/Admin Reducers/ProductReducer";
 import { toast } from "react-toastify";
+import { getProducts } from "../../Services/productServices";
+import {  v4 as uuid  } from 'uuid'
 
 const ProductContext = createContext();
 
@@ -12,13 +14,17 @@ const initialData = {
   Qty: "",
   PImg: "",
   Cat: "Select Category",
-  products: JSON.parse(localStorage.getItem("productData")) || [],
-  showProducts: JSON.parse(localStorage.getItem("productData")) || [],
+  products: JSON.parse(localStorage.getItem("productsData")) || [],
+  showProducts: JSON.parse(localStorage.getItem("productsData")) || [],
   isEdit: false,
 };
 
 const ProductProvider = ({ children }) => {
   const [prodState, prodDispatch] = useReducer(ProductReducer, initialData);
+  // useEffect(()=>{
+  //   getProducts().then(foods => prodDispatch({type: "SUBMIT", products: foods})).catch((error)=>console.log(error))
+  // },[])
+  
   const handleProdChange = (e) => {
     if (e.target.type === "file") {
       const file = e.target.files[0];
@@ -63,12 +69,11 @@ const ProductProvider = ({ children }) => {
       toast(`${prodState?.PName} product updated successfully`);
       prodDispatch({ type: "SET_CLEAR" });
     } else {
-      const existingData =
-        JSON.parse(localStorage.getItem("productData")) || [];
+      const existingData = JSON.parse(localStorage.getItem("productsData")) || getProducts().then(foods => {return foods}).catch((error)=>console.log(error));
       const payload = [
         ...existingData,
         {
-          PId: Math.floor(Math.random() * 10),
+          PId: uuid(),
           PName: prodState?.PName,
           PDesc: prodState?.PDesc,
           Price: prodState?.Price,
@@ -83,7 +88,7 @@ const ProductProvider = ({ children }) => {
     }
   };
   useEffect(() => {
-    localStorage.setItem("productData", JSON.stringify(prodState?.products));
+    localStorage.setItem("productsData", JSON.stringify(prodState?.products));
   }, [prodState?.products]);
 
   const handleProdDelete = (id) => {

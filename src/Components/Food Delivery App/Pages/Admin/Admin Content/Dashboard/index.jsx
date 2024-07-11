@@ -28,7 +28,7 @@ const Dashboard = () => {
     {
       img: "fa-solid fa-utensils",
       title: "Categories",
-      count: state?.categories.length,
+      // count: state?.categories.length,
       color: "#4680ff",
       to: "/categories",
     },
