@@ -1,13 +1,8 @@
 import React from 'react'
-import Navigationpanel from './Navigation'
-import { useContext } from 'react';
+import Navigationpanel from './Navigation';
 import logoImg from '../../../../../Images/assets/spices-removebg-preview.png';
-import { LoginContext } from '../../../../../Context/Authentication Context/LoginContext'
-import { useNavigate } from 'react-router-dom'
 
 const Sidebar = () => {
-    const {logout} = useContext(LoginContext)
-    const navigate = useNavigate();
     const navList = [
         {
             desc: "Overview",

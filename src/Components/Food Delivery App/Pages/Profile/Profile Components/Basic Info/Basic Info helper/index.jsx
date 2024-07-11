@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { useAuth } from '../../../../../../Context/Authentication Context/Signup';
 
 const InfoList = ({title,Value,name,data}) => {

@@ -30,7 +30,7 @@ const TableModal = ({setShowDetails,showDetails}) => {
         
       </table>
       <div className='mt-3 w-2/5'>
-        <img src={showDetails?.obj?.PImg} width={150} />
+        <img src={showDetails?.obj?.PImg} alt={showDetails?.obj?.PName} width={150} />
         <div className='mt-4 flex gap-2 justify-center'>
           <i onClick={()=>{
             handleProdUpdate(showDetails?.obj?.PId)

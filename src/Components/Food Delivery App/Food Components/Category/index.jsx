@@ -20,7 +20,7 @@ export default function Category() {
     <div className="w-full h-[80vh]  flex  items-center justify-between bg-white flex-wrap">
       <div className=' h-full w-2/5 flex flex-col gap-12 px-6 py-16  '>
    <h1 className="text-5xl text-yellow-500 font-serif relative border-b-2 border-b-blue-500 pb-5 font-semibold">Our Category</h1>
-  <img src={img} className='absolute w-16 rounded-full h-16 ml-[400px]  mt-[2.3rem]'/>
+  <img src={img} alt='forks' className='absolute w-16 rounded-full h-16 ml-[400px]  mt-[2.3rem]'/>
    <p className='text-gray-400'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic quis minus laudantium est dignissimos aperiam asperiores nam vel laborum dolorem unde voluptas quod quasi repellendus nihil atque minima, qui ea, nobis non porro placeat quaerat iusto blanditiis? Veniam, cum at!</p>
    <div className='w-5/6 border rounded-2xl'>
    <input type="text" placeholder='Search Category' className='border outline-none rounded-s-2xl w-4/5 px-3 py-1' />

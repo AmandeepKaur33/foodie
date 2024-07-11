@@ -176,17 +176,17 @@ const PaymentProvider = ({ children }) => {
   const handleStatusClear = () => {
     paymentDispatch({ type: "UPDATE_STATUS_VALUES", PName: "", OrderId: "" });
   };
-  const handleOrderSearch = (e) => {
-    const filterItems = paymentState?.orderDetails?.filter((element) =>
-      element?.map((el) => el?.PName.includes(e.target.value))
-    );
-  };
+  // const handleOrderSearch = (e) => {
+  //   const filterItems = paymentState?.orderDetails?.filter((element) =>
+  //     element?.map((el) => el?.PName.includes(e.target.value))
+  //   );
+  // };
   let totalAmount = 0;
-  paymentState?.orderDetails?.map((item) => {
+  paymentState?.orderDetails?.map((item) => (
     item?.map((ele) => {
       return (totalAmount += parseInt(ele?.total_Price));
-    });
-  });
+})
+  ));
   useEffect(() => {
     localStorage.setItem(
       "paymentInfo",
@@ -225,7 +225,7 @@ const PaymentProvider = ({ children }) => {
         handleStatusChange,
         handleStatusUpdate,
         handleUpdateValue,
-        handleOrderSearch,
+        
         setEditStatus,
         editStatus
       }}

@@ -18,7 +18,7 @@ const Profile = () => {
     zipCode: "",
     id: ""
   };
-  state?.user?.map((item) => {
+  state?.user?.foreach((item) => {
     if (item?.id === loginState?.user?.CId) {
       userInfo.id = item?.id;
       userInfo.name = item?.name;

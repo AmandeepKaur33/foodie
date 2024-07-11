@@ -51,6 +51,7 @@ const ProductReducer = (state, action) => {
         }
       case "check":
         console.log("check dispatch",action.products)
+        break;
     default:
       return state;
   }

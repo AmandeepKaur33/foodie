@@ -7,7 +7,7 @@ const FoodCategory = ({itemList}) => {
       <img src={itemList.CatImg} className='w-36 ' alt={itemList.CName} />
       <div className='flex flex-col items-center gap-1'>
           <h1 className='text-2xl text-black font-normal'>{itemList.CName}</h1>
-          <a href="#" className='underline text-sm text-gray-300 hover:scale-105 hover:text-blue-400'>View More</a>
+          <button  className='underline text-sm text-gray-300 hover:scale-105 hover:text-blue-400'>View More</button>
       </div>
     </div>
   )

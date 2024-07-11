@@ -1,7 +1,6 @@
-import React, { useContext } from 'react';
+import React from 'react';
 // import bg from '../../../Images/assets/footer.jpeg';
 import Aboutpage from '../../Pages/About';
-import { PaymentContext } from '../../../Context/Customer Context/PaymentContext';
 import ContentIntro from '../Assets/Starting Block';
 import img1 from '../../../Images/assets/images.png'; 
 import chef from '../../../Images/assets/staff.png'; 
@@ -12,7 +11,6 @@ import spiceImg from '../../../Images/assets/spice-removebg-preview.png';
 import Review from '../Review';
 
 const AboutUs = () => {
-  const {paymentState} = useContext(PaymentContext);
   const offersList = [
     {
       img: homeDelivery,
@@ -53,7 +51,7 @@ const AboutUs = () => {
         <div className='w-2/5 shadow bg-white absolute right-12 bottom-2 p-3 items-end'>
         <p className='text-center  text-gray-500'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur atque, eveniet alias adipisci velit nemo doloremque laborum odio asperiores repellat dolore mollitia obcaecati, sapiente libero voluptas beatae iusto odit in debitis placeat! Culpa, labore eius.</p>
         <div className='w-1/2 h-4/5 absolute right-[95%] rounded-full bottom-2/4 -z-10'>
-        <img src={spiceImg} alt="spice image" className='w-56 absolute  right-6 -inset-y-16 ' />
+        <img src={spiceImg} alt="spice" className='w-56 absolute  right-6 -inset-y-16 ' />
         </div>
         {/* <div className='w-5 absolute -top-3 left-[48%] -rotate-45 h-5 border-l-4 border-b-4'></div> */}
         </div>

@@ -15,14 +15,14 @@ const Dashboard = () => {
   console.log(totalAmount, "ta");
   let deliveredOrders = 0;
   let pendingOrders = 0;
-  paymentState?.orderDetails?.map((element) => {
+  paymentState?.orderDetails?.foreach((element) => {
     for (let i = 0; i < element?.length; i++) {
-      if (element[i].status === "Delivered") {
-        return (deliveredOrders += 1);
-      } else if (element[i].status === "Pending") {
-        return (pendingOrders += 1);
-      }
+    if (element[i].status === "Delivered") {
+      return (deliveredOrders += 1);
+    } else if (element[i].status === "Pending") {
+      return (pendingOrders += 1);
     }
+  }
   });
   const dashboardList = [
     {
