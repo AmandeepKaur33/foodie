@@ -82,7 +82,7 @@ const Payment = () => {
     handleDeleteCart(loginState?.user?.CId)
   const updateId = [{id: "", qty: ""}]
       // Dispatch all updates together
-      updatedQuantities.forEach(({ id, qty }) => {
+      updatedQuantities.map(({ id, qty }) => {
         updateId.push({id,qty})
       //   setTimeout(() => {
       //     handleQtyUpdate(id, qty);
