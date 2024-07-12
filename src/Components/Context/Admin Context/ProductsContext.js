@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useReducer } from "react";
+import React, { createContext, useEffect, useReducer, useState } from "react";
 import ProductReducer from "../../Reducers/Admin Reducers/ProductReducer";
 import { toast } from "react-toastify";
 import { getProducts } from "../../Services/productServices";
@@ -21,7 +21,10 @@ const initialData = {
 
 const ProductProvider = ({ children }) => {
   const [prodState, prodDispatch] = useReducer(ProductReducer, initialData);
-  
+  const [productsData,setProductsData] = useState()
+  useEffect(()=>{
+    getProducts().then(foods => setProductsData(foods)).catch((error)=>console.log(error))
+  },[setProductsData])
   const handleProdChange = (e) => {
     if (e.target.type === "file") {
       const file = e.target.files[0];
@@ -66,7 +69,7 @@ const ProductProvider = ({ children }) => {
       toast(`${prodState?.PName} product updated successfully`);
       prodDispatch({ type: "SET_CLEAR" });
     } else {
-      const existingData = JSON.parse(localStorage.getItem("productsData")) || getProducts().then(foods => {return foods}).catch((error)=>console.log(error));
+      const existingData = JSON.parse(localStorage.getItem("productsData")) || [];
       const payload = [
         ...existingData,
         {
@@ -159,6 +162,8 @@ const ProductProvider = ({ children }) => {
         handleQtyUpdate,
         handleProdUpdate,
         handleProdSearch,
+        productsData,
+        setProductsData
       }}
     >
       {children}

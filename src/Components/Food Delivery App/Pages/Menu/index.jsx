@@ -4,7 +4,7 @@ import { ProductContext } from "../../../Context/Admin Context/ProductsContext";
 import { CategoryContext } from "../../../Context/Admin Context/CategoryContext";
 
 const Menupage = () => {
-  const { prodState } = useContext(ProductContext);
+  const { prodState,productsData } = useContext(ProductContext);
   const { state } = useContext(CategoryContext);
 
   const showMenu = prodState?.products?.filter(
@@ -45,6 +45,9 @@ const Menupage = () => {
           />
         </div>
         <div className=" w-full bg-slate-100 py-10 flex flex-wrap gap-32 items-center justify-center ">
+          {productsData?.map((item)=>(
+             <FoodItems key={item?.PId} items={item} />
+          ))}
           {menu.map((item) => (
             <FoodItems key={item?.PId} items={item} />
           ))}

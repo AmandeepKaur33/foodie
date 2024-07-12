@@ -2,10 +2,12 @@ import React, { useContext } from "react";
 import Buttons from "../../../../Food Components/Assets/Button";
 import Table from "../../../../Food Components/Assets/Table";
 import { CategoryContext } from "../../../../../Context/Admin Context/CategoryContext";
+import catbanner from '../../../../../Images/banner.png';
 
 const Categories = () => {
-  const { state, handleChange, handleSubmit, handleImg, handleStatus, handleReset, handleSearch } =
+  const { state, handleChange ,handleSubmit, handleImg, handleStatus, handleReset, handleSearch } =
     useContext(CategoryContext);
+    
   return (
     <div className="w-full h-[calc(100vh-20vh)] flex gap-6  bg-white px-6 py-12 my-1 mx-auto ">
       <div className="w-2/5">
@@ -83,7 +85,19 @@ const Categories = () => {
           ></input>
         </div>
         <div>
+          {
+          state?.categories.length !== 0
+          ?
           <Table />
+          :
+          <div className='w-full text-left mt-3 h-[45vh] flex flex-col items-center justify-center gap-1'>
+            <img src={catbanner} alt="category" className="w-16" />
+            <h1 className="text-2xl px-11 relative text-blue-500 border-b border-blue-500 pb-4 font-semibold">
+              Add Category
+              <span className="absolute w-6 h-6 rotate-45 border-b-2 border-l-2 border-blue-400 inset-y-9 -inset-x-2 "></span>
+            </h1>
+          </div>
+          }
         </div>
       </div>
     </div>

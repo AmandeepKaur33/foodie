@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useReducer } from "react";
+import React, { createContext, useEffect, useReducer, useState } from "react";
 import CategoryReducer from "../../Reducers/Admin Reducers/CategoryReducers";
 import { toast } from "react-toastify";
 import { getCategories } from "../../Services/categoryServices";
@@ -17,11 +17,13 @@ const intialData = {
 };
 const CategoryProvider = ({ children }) => {
   const [state, dispatch] = useReducer(CategoryReducer, intialData);
+  const [categoryData, setCategoryData] = useState()
   console.log(state?.categories,"data");
   // const existingData = [];
-  // useEffect(()=>{
-    
-  // },[])
+  useEffect(()=>{
+    getCategories().then(foods => setCategoryData(foods))
+  },[setCategoryData])
+  console.log(categoryData,"CategoryData");
   const handleChange = (e) => {
     dispatch({
       type: "INPUT_CHANGE",
@@ -67,7 +69,7 @@ const CategoryProvider = ({ children }) => {
       toast.success(`${state?.CName} category updated successfully`);
       dispatch({ type: "SET_CLEAR" });
     } else {
-      const existingData = JSON.parse(localStorage.getItem("categoryData")) || getCategories().then(foods => { return foods});
+      const existingData = JSON.parse(localStorage.getItem("categoryData")) || [];
       const payload = [
         ...existingData,
         {
@@ -133,6 +135,8 @@ const CategoryProvider = ({ children }) => {
       value={{
         state,
         dispatch,
+        categoryData,
+        setCategoryData,
         handleChange,
         handleStatus,
         handleImg,

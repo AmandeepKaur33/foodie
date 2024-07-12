@@ -7,8 +7,8 @@ import { useAuth } from "../../../../../Context/Authentication Context/Signup";
 import { FeedbackContaxt } from "../../../../../Context/Customer Context/FeedbackContext";
 
 const Dashboard = () => {
-  const { state } = useContext(CategoryContext);
-  const { prodState } = useContext(ProductContext);
+  const { state , categoryData} = useContext(CategoryContext);
+  const { prodState, productsData } = useContext(ProductContext);
   const { feedbackState } = useContext(FeedbackContaxt);
   const { paymentState, totalAmount } = useContext(PaymentContext);
   const { userCount } = useAuth();
@@ -40,14 +40,14 @@ paymentState?.orderDetails?.forEach((element) => {
     {
       img: "fa-solid fa-utensils",
       title: "Categories",
-      count: state?.categories.length,
+      count: state?.categories.length + categoryData.length,
       color: "#4680ff",
       to: "/categories",
     },
     {
       img: "fa-solid fa-pizza-slice",
       title: "Products",
-      count: prodState?.products.length,
+      count: prodState?.products.length + productsData.length,
       color: "#FC6180",
       to: "/products",
     },
