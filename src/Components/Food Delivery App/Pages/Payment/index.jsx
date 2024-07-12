@@ -81,9 +81,8 @@ const Payment = () => {
     console.log(paymentState?.paymentRecords,"pr");
     handleDeleteCart(loginState?.user?.CId)
   const updateId = [{id: "", qty: ""}]
-      // Dispatch all updates together
       updatedQuantities.map(({ id, qty }) => {
-        updateId.push({id,qty})
+       return updateId.push({id,qty})
       //   setTimeout(() => {
       //     handleQtyUpdate(id, qty);
       // }, 3000); // 3000 milliseconds delay       

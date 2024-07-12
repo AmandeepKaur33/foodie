@@ -18,19 +18,30 @@ const Profile = () => {
     zipCode: "",
     id: ""
   };
-  state?.user?.map((item) => {
-    if (item?.id === loginState?.user?.CId) {
-      userInfo.id = item?.id;
-      userInfo.name = item?.name;
-      userInfo.username = item?.username;
-      userInfo.img = item?.img;
-      userInfo.email = item?.email;
-      userInfo.address = item?.address;
-      userInfo.mobile = item?.mobile;
-      userInfo.zipCode = item?.zipCode
-    }
-    // console.log("item",item);
-  });
+  // state?.user?.map((item) => {
+  //   if (item?.id === loginState?.user?.CId) {
+  //     userInfo.id = item?.id;
+  //     userInfo.name = item?.name;
+  //     userInfo.username = item?.username;
+  //     userInfo.img = item?.img;
+  //     userInfo.email = item?.email;
+  //     userInfo.address = item?.address;
+  //     userInfo.mobile = item?.mobile;
+  //     userInfo.zipCode = item?.zipCode
+  //   }
+  //   // console.log("item",item);
+  // });
+  const userItem = state?.user?.find(item => item?.id === loginState?.user?.CId);
+if (userItem) {
+    userInfo.id = userItem?.id;
+    userInfo.name = userItem?.name;
+    userInfo.username = userItem?.username;
+    userInfo.img = userItem?.img;
+    userInfo.email = userItem?.email;
+    userInfo.address = userItem?.address;
+    userInfo.mobile = userItem?.mobile;
+    userInfo.zipCode = userItem?.zipCode;
+}
   console.log(state, "state");
   return (
     <div className="w-full flex flex-col  gap-6  overflow-auto bg-white px-6 py-12 my-1 mx-auto ">

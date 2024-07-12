@@ -13,17 +13,29 @@ const Dashboard = () => {
   const { paymentState, totalAmount } = useContext(PaymentContext);
   const { userCount } = useAuth();
   console.log(totalAmount, "ta");
+  // let deliveredOrders = 0;
+  // let pendingOrders = 0;
+  // paymentState?.orderDetails?.map((element) => {
+  //   for (let i = 0; i < element?.length; i++) {
+  //   if (element[i].status === "Delivered") {
+  //     return (deliveredOrders += 1);
+  //   } else if (element[i].status === "Pending") {
+  //     return (pendingOrders += 1);
+  //   }
+  // }
+  // });
   let deliveredOrders = 0;
-  let pendingOrders = 0;
-  paymentState?.orderDetails?.map((element) => {
-    for (let i = 0; i < element?.length; i++) {
+let pendingOrders = 0;
+
+paymentState?.orderDetails?.forEach((element) => {
+  for (let i = 0; i < element?.length; i++) {
     if (element[i].status === "Delivered") {
-      return (deliveredOrders += 1);
+      deliveredOrders += 1;
     } else if (element[i].status === "Pending") {
-      return (pendingOrders += 1);
+      pendingOrders += 1;
     }
   }
-  });
+});
   const dashboardList = [
     {
       img: "fa-solid fa-utensils",
