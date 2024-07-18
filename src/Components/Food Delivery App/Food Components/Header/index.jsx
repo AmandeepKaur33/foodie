@@ -37,8 +37,8 @@ const Navbar = () => {
         <header className="w-11/12  sm:mx-12 py-5 h-20 bg-white flex border-b border-yellow-100 items-center justify-between text-blue-500">
             <div className="text-3xl relative text-blue-500  font-bold rounded-2xl flex items-center">
                 <img src={logoImg} className="w-12 mt-2" alt="" /><h1 className="hidden sm:flex">Foodies Point</h1></div>
-                <div className={`flex items-center transition-all  ${showMenu ? 'absolute w-screen px-0 mx-0 h-[35vh] z-[999]  p-2 top-16 flex flex-col bg-blue-700 ': 'hidden'} sm:flex`}>
-                <ul className={`w-2/5 transition-all  ${showMenu ? 'flex flex-col h-5/6 items-center  ': 'hidden'} sm:flex items-center text-xl justify-evenly font-medium`}>
+                <div className={`flex items-center sm:w-3/5  sm:justify-between transition-all  ${showMenu ? 'absolute w-screen px-0 mx-0 h-[35vh] z-[999]  p-2 top-16 flex flex-col bg-blue-700 ': 'hidden'} sm:flex`}>
+                <ul className={`w-2/5 sm:w-2/3 transition-all  ${showMenu ? 'flex flex-col h-5/6 items-center  ': 'hidden'} sm:flex items-center text-xl justify-evenly font-medium`}>
                 {navLinks.map((item,index)=>(
                     <NavLink to={item.path}  key={index}>{item.link}</NavLink>
                     
