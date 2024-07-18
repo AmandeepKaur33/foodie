@@ -4,7 +4,7 @@ const FoodItems = ({items}) => {
   const {handleCart} = useContext(CartContext);
   return (
   
-    <div className='w-[23%] h-[26rem] relative bg-white gap-5 pb-4 shadow-md rounded-2xl text-black flex items-start px-4 flex-col mt-10'>
+    <div className='w-11/12 sm:w-[23%] h-[27rem] relative bg-white gap-3 pb-4 shadow-md rounded-2xl text-black flex items-start px-4 flex-col mt-10'>
       <div className='w-full h-2/5 flex justify-center'>
       <img src={items?.PImg} alt={items?.PName} className='w-48 h-48 drop-shadow-xl absolute rounded-full -top-12' />
       </div>

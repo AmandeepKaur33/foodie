@@ -25,11 +25,11 @@ const Menupage = () => {
   return (
     <>
       <div className=" w-full  flex flex-col items-center py-6 overflow-auto">
-        <div className="w-11/12 mb-9 gap-3 mx-auto bg-slate-100 flex  py-5 rounded-md justify-between px-2 items-center">
-          <div className="flex w-11/12 items-center justify-between">
+        <div className="w-full sm:w-11/12 mb-9 gap-3 mx-auto bg-slate-100 flex  py-5 rounded-md justify-between px-2 items-center">
+          <div className="flex w-full sm:w-11/12 items-center sm:justify-between">
             <select
               onChange={Filter}
-              className="w-1/3 border-2 border-gray-300 py-1 px-2"
+              className="w-2/4 sm:w-1/3 border-2 border-gray-300 py-1 px-2"
             >
               <option>All</option>
               {state?.categories?.map((item) => (
@@ -41,10 +41,10 @@ const Menupage = () => {
             type="text"
             placeholder="Search your tasty meal"
             onChange={Filter}
-            className="w-1/2 border rounded-s-lg py-2 px-3"
+            className="w-3/4 sm:w-1/2 border rounded-s-lg py-2 px-3"
           />
         </div>
-        <div className=" w-full bg-slate-100 py-10 flex flex-wrap gap-32 items-center justify-center ">
+        <div className=" w-full bg-slate-100 py-10 flex flex-col sm:flex-row flex-wrap gap-16 sm:gap-32 items-center justify-center ">
           {productsData?.map((item)=>(
              <FoodItems key={item?.PId} items={item} />
           ))}

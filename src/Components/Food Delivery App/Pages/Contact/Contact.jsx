@@ -16,10 +16,10 @@ const Contact = () => {
     <div className='w-full   '>
       <div className='w-full relative bg-blue-50 flex items-center justify-evenly'>
       <ContentIntro title="Contact US" desc="Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime perferendis labore consequatur amet voluptas repudiandae?"/>
-      <div className='bg-blue-50 w-full h-[80vh]'>
+      <div className='bg-blue-50 hidden sm:flex w-full h-[80vh]'>
         <img src={burger} className='w-full h-full' alt="" />
       </div>
-      <form onSubmit={handleFeedbackSubmit} className='absolute inset-y-3/4 bottom-0 w-1/2 px-9 py-14 h-[80vh] rounded-2xl shadow-2xl bg-white '>
+      <form onSubmit={handleFeedbackSubmit} className='absolute inset-y-3/4 bottom-0 w-11/12 sm:w-1/2 px-9 py-14 h-[60vh] sm:h-[80vh] rounded-2xl shadow-2xl bg-white '>
       <div className='flex w-full gap-3'>
       <Input type="text" placeholder="First Name" name="FName" value={feedbackState?.FName}/>
       <Input type="text" placeholder="Last Name" name="LName" value={feedbackState?.LName}/>
@@ -33,10 +33,10 @@ const Contact = () => {
       </form>
       
       </div>
-      <div className='w-full h-[75vh] bg-yellow-50'></div>
-      <div className='w-full h-[60vh] flex flex-col gap-9 items-center justify-center '>
+      <div className='w-full h-[55vh] sm:h-[75vh] bg-yellow-50'></div>
+      <div className='w-full h-[80vh] sm:h-[60vh] flex flex-col gap-9 items-center justify-center '>
         <h1 className='text-4xl  font-serif font-semibold'>Get In Touch</h1>
-        <div className='flex justify-center items-center w-full gap-4'>
+        <div className='flex flex-col sm:flex-row justify-center items-center w-full gap-4'>
           <ContactDetails img={<IoMdCall/>} bgColor="green" detailTitle="Phone Number" info1="+ 536 902 2963 139 (1826)" info2="+ 637 117 9034 276 (1826)"/>
           <ContactDetails img={<MdEmail/>} bgColor="blue" detailTitle="Email" info1="info@foodiepoint.com" info2="help@foodiepoint.com"/>
           <ContactDetails img={<FaLocationDot/>} bgColor="yellow" detailTitle="Address" info1="13 Modern Street,California," info2="USA (United States)"/>

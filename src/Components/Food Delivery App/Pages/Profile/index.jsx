@@ -51,7 +51,7 @@ if (userItem) {
       <div className="w-full  border">
         <div className="w-full h-[234px] flex flex-col justify-between mt-3 gap-4 px-8 border-b">
         <div className="flex gap-4">
-          <div className="w-48 h-44 border">
+          <div className="w-96 h-80 sm:w-48 sm:h-44 border">
             <img src={userInfo.img} alt="" className="p-1 h-full w-full" />
           </div>
           <div className="text-blue-500 font-medium flex flex-col  text-lg mt-4 h-full ">

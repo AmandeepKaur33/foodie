@@ -16,17 +16,10 @@ const Slider = () => {
     // },[])
 
   return (
-    <div className="w-full h-[100vh] bg-gradient-to-b to-blue-50 from-white bg-blue-100 bg-no-repeat  pt-10 relative">
-      <div className="absolute top-4 right-4">
-        <img src={bgBanner} className="w-[500px] " alt="" />
-        <img
-          src={herobanner}
-          className="absolute w-[650px]  top-[40px] inset-x-8"
-          alt=""
-        />
-      </div>
-      <div className="h-full w-1/2 mx-9 pt-14 pl-14">
-        <h1 className="text-6xl font-bold leading-snug">
+    <div className=" sm:h-[100vh]  bg-gradient-to-b to-blue-50 from-white bg-blue-100 bg-no-repeat   py-10 relative">
+      <div className="w-full flex gap-1 sm:flex-row flex-col-reverse sm:items-center">
+      <div className="h-1/2  sm:h-full w-full sm:w-1/2 sm:mx-9 px-6 sm:pl-8">
+        <h1 className="lg:text-6xl md:text-3xl  font-bold leading-snug">
           Enjoy Quick <span className="text-blue-500">Food</span> Delivery In
           Special Occation.
         </h1>
@@ -42,6 +35,24 @@ const Slider = () => {
           width="156px"
         />
       </div>
+       <div className="sm:w-1/2 w-full  flex items-center justify-center h-1/2 sm:h-full ">
+        <img src={bgBanner} className="relative w-48 lg:w-[480px] md:w-96 sm:w-56" alt="" />
+        {/* <img
+          src={herobanner}
+          className=" lg:w-[475px] md:w-[410px]  absolute top-14 right-14 "
+          alt=""
+        /> */}
+      </div>
+      </div>
+      {/* <div className="absolute sm:right-1  md:top-4 md:right-4">
+        <img src={bgBanner} className="lg:w-[440px] md:w-96 sm:w-56" alt="" />
+        <img
+          src={herobanner}
+          className="absolute lg:w-[575px] md:w-[410px] top-[40px] inset-x-8"
+          alt=""
+        />
+      </div> */}
+      
     </div>
   );
 };

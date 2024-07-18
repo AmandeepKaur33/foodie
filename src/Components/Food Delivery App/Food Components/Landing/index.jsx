@@ -7,7 +7,7 @@ import GetApp from "../App";
 
 const Landing = () => {
     return(
-        <section className="w-[100vw] overflow-x-hidden">
+        <section className="w-screen overflow-x-auto">
             <Slider />
             <Category />
             <About />
