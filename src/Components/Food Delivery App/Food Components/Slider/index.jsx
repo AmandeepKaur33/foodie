@@ -1,5 +1,5 @@
 import React from "react";
-import herobanner from "../../../Images/assets/foodimg-removebg-preview.png";
+// import herobanner from "../../../Images/assets/foodimg-removebg-preview.png";
 import bgBanner from "../../../Images/delevery-bg1.png";
 import Button from "../Button";
 
