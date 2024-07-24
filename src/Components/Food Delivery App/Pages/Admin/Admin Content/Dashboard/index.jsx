@@ -94,7 +94,7 @@ paymentState?.orderDetails?.forEach((element) => {
     },
   ];
   return (
-    <div className="w-full h-[calc(100%-12%)] grid grid-flow-dense grid-cols-4 items-center py-5 pt-16 pl-5">
+    <div className="w-full h-[calc(100%-12%)] grid grid-flow-dense grid-cols-1 sm:grid-cols-4 items-center py-5 pt-16 pl-5">
       {dashboardList.map((item, index) => (
         <Card key={index} list={item} />
       ))}

@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Navigationpanel from './Navigation';
 import logoImg from '../../../../../Images/assets/spices-removebg-preview.png';
+import { ResponsiveContext } from '../../../../../Context/Display Context/ResponsiveContext';
 
 const Sidebar = () => {
+    const {mobileResponsive} = useContext(ResponsiveContext);
+    const {showSidebar} = useContext(ResponsiveContext);
     const navList = [
         {
             desc: "Overview",
@@ -41,14 +44,11 @@ const Sidebar = () => {
             img: "fa-regular fa-comments"
         },
     ]
+    console.log(showSidebar,"side");
   return (
-    <div className='w-1/5 border-r-2 h-full overflow-auto'>
+    <div className={`w-1/5 border-r-2 h-full overflow-auto ${mobileResponsive ? 'hidden' : 'block'} `}>
         <div className='mx-2 my-2 py-1  text-blue-500 flex items-center justify-between border-b border-b-gray-300'>
         <div className='text-lg text-blue-500  font-bold rounded-2xl flex items-center gap-1 '><img src={logoImg} className="w-9" alt="" />Foodies Point</div>
-            {/* <button onClick={()=> {
-                logout();
-                navigate("/")
-            }}>Logout</button> */}
         </div>
         {navList.map((item,index)=>(
             <Navigationpanel key={index} list={item}/>

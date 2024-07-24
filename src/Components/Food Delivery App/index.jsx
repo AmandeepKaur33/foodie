@@ -27,7 +27,7 @@ const Foodapp = () => {
             <Panel/>
             :
             <div className="w-full">
-<Navbar />
+        <Navbar />
         <Routes>
         <Route name="Landing" element={<Landing />} path="/" />
         <Route name="About" element={<AboutUs />} path="/About"></Route>
@@ -43,7 +43,7 @@ const Foodapp = () => {
         </Route>
         <Route path="*" element={<Error />} />
         </Routes>
-        <Foodfooter />
+        {/* <Foodfooter /> */}
             </div>
         }
         

@@ -16,10 +16,10 @@ const Slider = () => {
     // },[])
 
   return (
-    <div className=" sm:h-[100vh]  bg-gradient-to-b to-blue-50 from-white bg-blue-100 bg-no-repeat   py-10 relative">
+    <div className=" sm:h-[70vh]  bg-gradient-to-b to-blue-50 from-white bg-blue-100 bg-no-repeat   py-10 relative">
       <div className="w-full flex gap-1 sm:flex-row flex-col-reverse sm:items-center">
       <div className="h-1/2  sm:h-full w-full sm:w-1/2 sm:mx-9 px-6 sm:pl-8">
-        <h1 className="lg:text-6xl md:text-3xl  font-bold leading-snug">
+        <h1 className="lg:text-6xl sm:text-xl md:text-3xl  font-bold leading-snug">
           Enjoy Quick <span className="text-blue-500">Food</span> Delivery In
           Special Occation.
         </h1>

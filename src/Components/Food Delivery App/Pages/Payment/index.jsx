@@ -102,7 +102,7 @@ else{
  console.log(loginState?.user?.CId,"id");
   return (
     <div className="w-full flex flex-col items-center gap-6 h-[800px] overflow-auto bg-white px-6 py-12 my-1 mx-auto ">
-        <div className='w-2/5 px-12 py-10   rounded-3xl' style={{boxShadow: "1px 5px 10px 1px rgba(0, 0, 0, 0.2)"}}>
+        <div className='sm:w-2/5 w-[98%] px-3 sm:px-12 py-10   rounded-3xl' style={{boxShadow: "1px 5px 10px 1px rgba(0, 0, 0, 0.2)"}}>
         <div className='w-full bg-gray-100 h-full flex gap-6 items-center px-5 py-3 flex-col'>
             <div className='w-full h-20 bg-white flex items-center justify-center'>
             <h1 className='text-3xl font-sans text-gray-600 font-semibold '>Order Payment</h1>
@@ -111,7 +111,7 @@ else{
               {list?.map((i)=>(
                 <Inputs list={i} onChange={handleChange}/>
               ))}
-              <div className='w-full flex mt-3 gap-7'>
+              <div className='w-full flex-wrap sm:flex-nowrap flex mt-3 gap-7'>
                 <div className='w-full flex flex-col gap-2'>
                  <h1 className='flex items-center'>
                  Expiration Date {paymentState?.errors?.expMonth && <span className='text-red-500  mt-1 text-lg'>*</span>}

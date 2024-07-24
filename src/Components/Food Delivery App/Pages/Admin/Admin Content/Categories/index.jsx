@@ -9,8 +9,8 @@ const Categories = () => {
     useContext(CategoryContext);
     
   return (
-    <div className="w-full h-[calc(100vh-20vh)] flex gap-6  bg-white px-6 py-12 my-1 mx-auto ">
-      <div className="w-2/5">
+    <div className="w-full h-[calc(100vh-20vh)] flex flex-col items-center sm:flex-row gap-6  bg-white px-2 sm:px-6 py-12 my-1 mx-auto ">
+      <div className="w-11/12 sm:w-2/5">
         <h1 className="text-gray-700 text-lg font-medium border-b border-b-gray-200 pb-4 w-full">
           CATEGORY
         </h1>
@@ -68,7 +68,7 @@ const Categories = () => {
           </div>
         </form>
       </div>
-      <div className="w-3/5 h-full pr-4 overflow-auto">
+      <div className="w-11/12 sm:w-3/5 h-full sm:pr-4 overflow-auto">
         <h1 className="text-gray-700 text-lg font-medium border-b border-b-gray-200 pb-4 w-full">
           CATEGORY LIST
         </h1>

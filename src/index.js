@@ -13,6 +13,7 @@ import { ProductProvider } from "./Components/Context/Admin Context/ProductsCont
 import { CartProvider } from "./Components/Context/Customer Context/CartContext";
 import { PaymentProvider } from "./Components/Context/Customer Context/PaymentContext";
 import { FeedbackProvider } from "./Components/Context/Customer Context/FeedbackContext";
+import { ResponsiveProvider } from "./Components/Context/Display Context/ResponsiveContext";
 // import { AuthProvider } from "./Components/Context/SignupIn";
 // import { AppProvider, LoginContext } from "./Components/Context/context";
 // import store from "./store";
@@ -21,6 +22,7 @@ import { FeedbackProvider } from "./Components/Context/Customer Context/Feedback
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
+  <ResponsiveProvider>
   <AuthProvider>
     <LoginProvider>
       <CategoryProvider>
@@ -41,6 +43,7 @@ root.render(
   </CategoryProvider>
   </LoginProvider>
   </AuthProvider>
+  </ResponsiveProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function

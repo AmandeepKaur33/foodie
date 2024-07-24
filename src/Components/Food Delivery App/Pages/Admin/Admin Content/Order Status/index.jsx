@@ -14,13 +14,13 @@ const OrderStatus = () => {
     editStatus
   } = useContext(PaymentContext);
   return (
-    <div className="w-full h-[calc(100vh-20vh)] overflow-auto flex gap-6  bg-white px-6 py-12 my-1 mx-auto">
+    <div className="w-full h-[calc(100vh-20vh)] overflow-auto flex gap-6   bg-white px-6 py-12 my-1 mx-auto">
       <div className="w-full ">
         <h1 className="text-gray-700 text-lg font-medium border-b border-b-gray-200 pb-4 w-full">
           ORDER LIST
         </h1>
-        <div className="mt-5 flex items-center gap-2 justify-between">
-          <div className="w-1/3">
+        <div className="mt-5 flex flex-col sm:flex-row items-center gap-2 justify-between">
+          <div className="w-full sm:w-1/3">
          {editStatus 
          &&
          <div className="w-full flex flex-col gap-5">
@@ -69,13 +69,13 @@ const OrderStatus = () => {
         <div className="flex items-center">
           <table className="w-full text-left mt-3">
             <thead>
-              <tr className="my-32 border-y border-b-2 w-4/5  shadow-xl">
-                <th className="py-3 px-3 text-center ">Order No</th>
-                <th className="py-3 px-3 text-center">Product Name</th>
-                <th className="py-3 px-3 text-center ">Total Price</th>
-                <th className="py-3 px-3 text-center">Order Date</th>
-                <th className="py-3 px-3 text-center ">Status</th>
-                <th className="py-3 px-3 text-center ">Edit</th>
+              <tr className="my-32 border-y border-b-2 w-full sm:w-4/5  shadow-xl">
+                <th className="py-3 px-3 text-center text-xs ">Order No</th>
+                <th className="py-3 px-3 text-center text-xs">Product Name</th>
+                <th className="py-3 px-3 text-center text-xs ">Total Price</th>
+                <th className="py-3 px-3 text-center text-xs">Order Date</th>
+                <th className="py-3 px-3 text-center text-xs ">Status</th>
+                <th className="py-3 px-3 text-center text-xs ">Edit</th>
               </tr>
             </thead>
             <tbody className="">
@@ -83,7 +83,7 @@ const OrderStatus = () => {
                 paymentState?.orderDetails?.map((element) =>
                   element?.map((el) =>
                     el?.OrderId === item?.OrderId ? (
-                      <tr className=" border-b">
+                      <tr className=" border-b text-xs">
                         <td className=" py-4 px-3 text-gray-500 font-semibold">
                           {item?.OrderId}
                         </td>

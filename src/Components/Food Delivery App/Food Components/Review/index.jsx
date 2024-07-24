@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FaQuoteLeft } from "react-icons/fa";
@@ -18,13 +18,15 @@ import "../../../../style.css";
 
 // import required modules
 import { Autoplay, Pagination } from "swiper/modules";
+import { ResponsiveContext } from "../../../Context/Display Context/ResponsiveContext";
 
 export default function Review() {
-  const [mobileResponsive,setMobileResponsive] = useState(false)
-  useEffect(()=>{
-    window.innerWidth < 640 ? setMobileResponsive(true) : setMobileResponsive(false)
-  },[setMobileResponsive])
-  console.log("mobileResponsive",mobileResponsive);
+  const {mobileResponsive} = useContext(ResponsiveContext)
+  // const [mobileResponsive,setMobileResponsive] = useState(false)
+  // useEffect(()=>{
+  //   window.innerWidth < 640 ? setMobileResponsive(true) : setMobileResponsive(false)
+  // },[setMobileResponsive])
+  // console.log("mobileResponsive",mobileResponsive);
   const reviewList = [
     {
       img: img1,
@@ -70,7 +72,7 @@ export default function Review() {
     },
   ];
   return (
-    <div className="w-[100vw] h-[85vh] sm:h-[100vh]  overflow-auto flex py-14 flex-col items-center justify-center bg-blue-50">
+    <div className="w-[100vw] h-[85vh] sm:h-[98vh] md:h-[100vh]  overflow-auto flex py-14 flex-col items-center justify-center bg-blue-50">
       <h1 className="text-5xl text-center font-serif font-semibold">Our Happy Clients</h1>
       <Swiper
         slidesPerView={mobileResponsive ? 1 : 2}
@@ -92,13 +94,13 @@ export default function Review() {
         {reviewList?.map((item, index) => (
           
           <SwiperSlide key={index} className=" slide ">
-            <div className="w-11/12 h-full sm:w-full  " >
+            <div className="w-11/12 h-full md:w-full  " >
               <div className="w-full h-3/5 flex py-12 px-6 gap-2 shadow-md  bg-white">
-              <div className="text-lg sm:text-2xl">
+              <div className="text-lg md:text-2xl">
               <FaQuoteLeft className="text-gray-500  "/>
               </div>
-              <p className="text-gray-500 text-sm sm:text-base">{item?.message}</p>
-              <div className="flex items-end text-lg sm:text-2xl">
+              <p className="text-gray-500 text-sm md:text-base">{item?.message}</p>
+              <div className="flex items-end text-lg md:text-2xl">
               <FaQuoteRight className="text-gray-500  "/>
               </div>
               </div>

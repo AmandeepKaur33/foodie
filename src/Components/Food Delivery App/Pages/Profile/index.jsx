@@ -44,18 +44,18 @@ if (userItem) {
 }
   console.log(state, "state");
   return (
-    <div className="w-full flex flex-col  gap-6  overflow-auto bg-white px-6 py-12 my-1 mx-auto ">
+    <div className="w-full flex flex-col  gap-6  overflow-auto bg-white px-1 sm:px-6 py-12 my-1 mx-auto ">
       <div>
         <h1 className="text-4xl font-serif font-semibold">User Information</h1>
       </div>
       <div className="w-full  border">
-        <div className="w-full h-[234px] flex flex-col justify-between mt-3 gap-4 px-8 border-b">
+        <div className="w-full h-[234px] flex flex-col justify-between mt-3 gap-4 sm:px-8 border-b">
         <div className="flex gap-4">
-          <div className="w-96 h-80 sm:w-48 sm:h-44 border">
+          <div className="w-48 h-44  border">
             <img src={userInfo.img} alt="" className="p-1 h-full w-full" />
           </div>
-          <div className="text-blue-500 font-medium flex flex-col  text-lg mt-4 h-full ">
-            <h1 className="font-bold text-2xl">{userInfo.name}</h1>
+          <div className="text-blue-500 font-medium flex flex-col text-sm  sm:text-lg mt-4 h-full ">
+            <h1 className="font-bold text-lg sm:text-2xl">{userInfo.name}</h1>
             <h3>{userInfo.username}</h3>
             <h3>{userInfo.email}</h3>
             {!historyDisplayToggle &&

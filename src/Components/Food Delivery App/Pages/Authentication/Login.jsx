@@ -75,14 +75,14 @@ const Login = () => {
     }
   };
   return (
-    <div className="w-full flex flex-col justify-center  sm:gap-6 h-[100vh] sm:h-[80vh] overflow-auto bg-white px:6 sm:px-20  sm:py-12 sm:my-1 sm:mx-auto ">
+    <div className="w-full flex flex-col justify-center  sm:gap-6 h-[70vh] sm:h-[80vh] overflow-auto bg-white px:6 sm:px-20  sm:py-12 sm:my-1 sm:mx-auto ">
       {/* <h1 className="text-5xl font-bold text-gray-600">Login</h1> */}
       <div className="w-full h-full sm:[98%] border border-gray-300 flex flex-col sm:flex-row">
-        <div className="w-full sm:w-1/2 h-1/2 sm:h-full flex items-center justify-center">
+        <div className="w-full sm:w-1/2 h-3/5 sm:h-full flex items-center justify-center">
           <img src={loginImg} alt="" className="w-full h-full" />
         </div>
 
-        <form className="w-full h-1/2 sm:w-1/2 sm:h-full flex flex-col items-center gap-7 justify-center bg-white">
+        <form className="w-full h-2/5 sm:w-1/2 sm:h-full flex flex-col items-center gap-7 pt-6 sm:pt-0 sm:justify-center bg-white">
           <div className="relative w-4/5  mb-3">
             <input
               type="text"

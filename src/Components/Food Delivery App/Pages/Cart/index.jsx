@@ -8,27 +8,27 @@ const Cart = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="w-full flex gap-6 h-[calc(100vh-20vh)] overflow-auto bg-white px-6 py-12 my-1 mx-auto ">
-      <div className=" w-full flex flex-col gap-4 mx-8 my-8 items-start justify-center">
+    <div className="w-full flex gap-6 h-[calc(100vh-20vh)] overflow-auto bg-white px-2 sm:px-6 py-6 sm:py-12 my-1 sm:mx-auto ">
+      <div className=" w-full flex flex-col gap-4 sm:mx-8 sm:my-8 items-start sm:justify-center">
         <div className="">
-          <h1 className="font-bold text-5xl">Your Shopping Cart</h1>
+          <h1 className="font-bold text-4xl sm:text-5xl">Your Shopping Cart</h1>
         </div>
         <table className="w-full text-center  text-sm">
           <thead className="border-b pb-3 border-gray-400">
             <tr className="py-3.5 pr-3 font-semibold text-gray-900">
-              <th className="py-3.5 pr-3 font-semibold text-gray-900 text-3xl">
+              <th className="py-3.5 pr-3 font-semibold text-gray-900 text-lg sm:text-3xl">
                 Name
               </th>
-              <th className="py-3.5 pr-3 font-semibold text-gray-900 text-3xl">
+              <th className="py-3.5 pr-3 font-semibold text-gray-900 text-lg sm:text-3xl">
                 Image
               </th>
-              <th className="py-3.5 pr-3 font-semibold text-gray-900 text-3xl">
+              <th className="py-3.5 pr-3 font-semibold text-gray-900 text-lg sm:text-3xl">
                 Price
               </th>
-              <th className="py-3.5 pr-3 font-semibold text-gray-900 text-3xl">
+              <th className="py-3.5 pr-3 font-semibold text-gray-900 text-lg sm:text-3xl">
                 Quantity
               </th>
-              <th className="py-3.5 pr-3 font-semibold text-gray-900 text-3xl">
+              <th className="py-3.5 sm:pr-3 font-semibold text-gray-900 text-lg sm:text-3xl">
                 Total Price
               </th>
             </tr>
@@ -37,7 +37,7 @@ const Cart = () => {
             {cart ? (
               cart?.map((item) => (
                 <tr className="mt-20 h-24" key={item?.cartId}>
-                  <td className="py-4 px-3 text-gray-500 text-xl ">
+                  <td className="py-4 px-3 text-gray-500 text-base sm:text-xl ">
                     {item.name}
                   </td>
                   <td className="flex items-center justify-center py-5 ">
@@ -78,7 +78,7 @@ const Cart = () => {
                       onClick={() => {
                         handleCartItemDelete(item?.cartId);
                       }}
-                      className="fa-solid fa-trash bg-[#FC6180] px-3 py-1 text-xl rounded-xl text-white "
+                      className="fa-solid fa-trash bg-[#FC6180] px-3 py-1 text-base sm:text-xl rounded-xl text-white "
                     ></i>
                   </td>
                 </tr>
@@ -96,13 +96,13 @@ const Cart = () => {
         <div className="w-full flex  gap-36">
           <button
             onClick={() => navigate("/Menu")}
-            className="px-8 py-2 rounded-3xl text-white bg-teal-500"
+            className="px-4 sm:px-8 py-2 rounded-3xl text-white bg-teal-500"
           >
             Continue Order
           </button>
           {cart.length !== 0 && (
             <button
-              className="px-8 py-2 rounded-3xl text-white bg-green-500"
+              className="px-4 sm:px-8 py-2 rounded-3xl text-white bg-green-500"
               onClick={() => {
                 navigate("/Payment");
               }}
