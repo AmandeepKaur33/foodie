@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import FoodCategory from "./Asset/index.jsx";
 import { CategoryContext } from "../../../Context/Admin Context/CategoryContext.js";
-import img from "../../../Images/assets/favicon.png";
+import img from "../../../Images/assets/categorylogo.png";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -25,7 +25,7 @@ export default function Category() {
         <img
           src={img}
           alt="forks"
-          className="absolute w-16 rounded-full h-16 ml-[250px] mt-[1.4rem] md:ml-[400px]  md:mt-[2.3rem]"
+          className="absolute w-16 rounded-full h-16 ml-[250px] mt-[1.4rem] md:ml-[400px] lg:w-32 rotate-12 lg:h-56 md:mt-[2.3rem] lg:mt-[1.2rem]  lg:ml-[200px]"
         />
         <p className="text-gray-400">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic quis
