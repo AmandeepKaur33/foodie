@@ -2,7 +2,6 @@ import React, { useContext, useState } from 'react'
 import { PaymentContext } from '../../../../Context/Customer Context/PaymentContext';
 import { LoginContext } from '../../../../Context/Authentication Context/LoginContext';
 import { ResponsiveContext } from '../../../../Context/Display Context/ResponsiveContext';
-import TableModal from '../../../Food Components/Assets/Table Modal';
 import MobileResponsiveModal from './Responsive Modal';
 
 const InvoiceInfo = () => {

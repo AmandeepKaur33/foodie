@@ -34,7 +34,6 @@ const Foodapp = () => {
         <Route name="Menu" element={<Menupage />} path="/Menu"></Route>
         <Route name="Contact" element={<Contact />} path="/Contact"></Route>
         {loginState?.isAuthenticated ? <Route name="Cart" element={<Cart />} path="/Cart"></Route> : <Route name="Cart" element={<Login />} path="/Cart"></Route>}
-       {/* <Route name="Cart" element={<Cart />} path="/Cart"></Route> */}
        <Route name="Payment" element={<Payment/>} path="/Payment" />
        {loginState?.isAuthenticated ? <Route name="Profile" element={<Profile/>} path="/Profile" /> : <Route name="Profile" element={<Login  />} path="/Profile"></Route>}
        <Route name="Invoice" element={<Invoice/>} path="/Invoice" />
@@ -43,7 +42,7 @@ const Foodapp = () => {
         </Route>
         <Route path="*" element={<Error />} />
         </Routes>
-        {/* <Foodfooter /> */}
+        <Foodfooter />
             </div>
         }
         
