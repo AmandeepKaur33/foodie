@@ -7,6 +7,7 @@ import catbanner from '../../../../../Images/banner.png';
 const Categories = () => {
   const { state, handleChange ,handleSubmit, handleImg, handleStatus, handleReset, handleSearch } =
     useContext(CategoryContext);
+    console.log(state?.categories,"stst");
     
   return (
     <div className="w-full h-[calc(100vh-20vh)] flex flex-col items-center sm:flex-row gap-6  bg-white px-2 sm:px-6 py-12 my-1 mx-auto ">

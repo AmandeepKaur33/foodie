@@ -7,12 +7,12 @@ import GetApp from "../App";
 
 const Landing = () => {
     return(
-        <section className="w-screen overflow-x-auto">
+        <section className="w-full ">
             <Slider />
             <Category />
             <About />
             <Review/>
-            <GetApp/>
+            {/* <GetApp/> */}
         </section>
     )
 }

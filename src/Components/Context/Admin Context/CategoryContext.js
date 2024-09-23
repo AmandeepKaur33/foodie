@@ -11,8 +11,8 @@ const intialData = {
   CName: "",
   CatImg: "",
   CatStatus: false,
-  categories: JSON.parse(localStorage.getItem("categoryData")) || [],
-  showCategories: JSON.parse(localStorage.getItem("categoryData")) || [],
+  categories: JSON.parse(localStorage.getItem("categoryItems")) || [],
+  showCategories: JSON.parse(localStorage.getItem("categoryItems")) || [],
   isEdit: false,
 };
 const CategoryProvider = ({ children }) => {
@@ -69,7 +69,7 @@ const CategoryProvider = ({ children }) => {
       toast.success(`${state?.CName} category updated successfully`);
       dispatch({ type: "SET_CLEAR" });
     } else {
-      const existingData = JSON.parse(localStorage.getItem("categoryData")) || [];
+      const existingData = JSON.parse(localStorage.getItem("categoryItems")) || [];
       const payload = [
         ...existingData,
         {
@@ -86,7 +86,7 @@ const CategoryProvider = ({ children }) => {
   };
   useEffect(() => {
     
-    localStorage.setItem("categoryData", JSON.stringify(state?.categories));
+    localStorage.setItem("categoryItems", JSON.stringify(state?.categories));
   }, [state?.categories]);
   const handleDelete = (id) => {
     let removedItem;

@@ -17,8 +17,6 @@ import AboutUs from "./Food Components/About Us";
 import Contact from "./Pages/Contact/Contact";
 
 const Foodapp = () => {
-    // const initial = JSON.parse(localStorage.getItem('LoginData'))
-    // console.log("check login data", initial);
     const {loginState} = useContext(LoginContext);
     return(
         <div className="w-full">

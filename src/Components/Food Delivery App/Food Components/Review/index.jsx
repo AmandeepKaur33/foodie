@@ -22,11 +22,6 @@ import { ResponsiveContext } from "../../../Context/Display Context/ResponsiveCo
 
 export default function Review() {
   const {mobileResponsive} = useContext(ResponsiveContext)
-  // const [mobileResponsive,setMobileResponsive] = useState(false)
-  // useEffect(()=>{
-  //   window.innerWidth < 640 ? setMobileResponsive(true) : setMobileResponsive(false)
-  // },[setMobileResponsive])
-  // console.log("mobileResponsive",mobileResponsive);
   const reviewList = [
     {
       img: img1,
@@ -73,7 +68,7 @@ export default function Review() {
   ];
   return (
     <div className="w-[100vw] h-[85vh] sm:h-[98vh] md:h-[100vh]  overflow-auto flex py-14 flex-col items-center justify-center bg-blue-50">
-      <h1 className="text-5xl text-center font-serif font-semibold">Our Happy Clients</h1>
+      <h1 className="text-5xl text-center font-serif font-semibold">OUR HAPPY CLIENTS</h1>
       <Swiper
         slidesPerView={mobileResponsive ? 1 : 2}
         direction={'horizontal'}
@@ -82,11 +77,6 @@ export default function Review() {
           delay: 2500,
           disableOnInteraction: true,
           waitForTransition: true,
-        }}
-        pagination={{
-          horizontalClass: true,
-          clickable: true,
-          
         }}
         modules={[Pagination,Autoplay]}
         className="slider w-full h-full"
@@ -108,19 +98,9 @@ export default function Review() {
                 <img src={item?.img} className="w-24 h-20 rounded-full" alt={item?.name} />
                 <h1 className="text-blue-500 font-semibold">{item?.name}</h1>
               </div>
-              {/* <img src={item?.img} alt={item?.name} /> */}
-              {/* {item?.name} */}
             </div>
           </SwiperSlide>
         ))}
-        {/* <SwiperSlide>Slide 2</SwiperSlide>
-        <SwiperSlide>Slide 3</SwiperSlide>
-        <SwiperSlide>Slide 4</SwiperSlide>
-        <SwiperSlide>Slide 5</SwiperSlide>
-        <SwiperSlide>Slide 6</SwiperSlide>
-        <SwiperSlide>Slide 7</SwiperSlide>
-        <SwiperSlide>Slide 8</SwiperSlide>
-        <SwiperSlide>Slide 9</SwiperSlide> */}
       </Swiper>
     </div>
   );

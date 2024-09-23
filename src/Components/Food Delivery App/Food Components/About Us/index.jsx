@@ -1,5 +1,4 @@
 import React from 'react';
-// import bg from '../../../Images/assets/footer.jpeg';
 import Aboutpage from '../../Pages/About';
 import ContentIntro from '../Assets/Starting Block';
 import img1 from '../../../Images/assets/images.png'; 
@@ -43,9 +42,9 @@ const AboutUs = () => {
       ))}
       </div>
       </div>
-      <div className='w-full h-[70vh] sm:h-[60vh]'></div>
+      <div className='w-full h-[70vh] sm:h-[20vh] bg-yellow-50'></div>
         <Aboutpage/>
-      <div className='w-full h-[65vh] sm:h-[60vh] py-6 sm:pb-12 flex items-center justify-center'>
+      <div className='w-full h-[65vh] sm:h-[55vh] py-6 sm:pb-12 flex items-center justify-center'>
         <div className='w-full relative px-2 sm:px-14  h-full flex flex-col gap-6 items-center sm:items-start sm:justify-center'>
         <h1 className='text-4xl sm:px-9 bg-blue-200 py-3 rounded-2xl h-1/4 sm:h-2/5 w-full sm:w-2/5 leading-[3.3rem] font-semibold text-center'>Get Your Order With Trusted People</h1>
         <div className='w-full sm:w-2/5 shadow bg-white sm:absolute right-12 sm:bottom-2 p-3 items-end'>
@@ -53,7 +52,6 @@ const AboutUs = () => {
         <div className='w-full  sm:w-1/2 h-4/5 absolute  sm:right-[95%] rounded-full sm:bottom-2/4 -z-10'>
         <img src={spiceImg} alt="spice" className='w-56 absolute  right-6 -inset-y-16 ' />
         </div>
-        {/* <div className='w-5 absolute -top-3 left-[48%] -rotate-45 h-5 border-l-4 border-b-4'></div> */}
         </div>
         </div>
       </div>

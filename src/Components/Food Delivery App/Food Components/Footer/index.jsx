@@ -75,12 +75,12 @@ const Foodfooter = () => {
   ]
   return (
     <div className="w-full h-[80vh]  sm:h-[40vh] items-center  py-14 flex bg-cover flex-col" >
-      <ul className='flex flex-col sm:flex-row justify-center w-full px-3 sm:w-5/6 border-b pb-12 gap-12 sm:gap-28'>
+      <ul className='flex flex-col sm:flex-row justify-center w-full px-3 sm:w-5/6 border-b pb-12 gap-12 sm:gap-36'>
       
         {infoList?.map((item,index)=>(
-          <li key={index} className='flex  items-center gap-14 text-left'>
+          <li key={index} className='flex flex-col  items-center gap-8 text-left'>
             <h1 className={`${item?.isHighlighted ?' sm:text-3xl sm:font-extrabold text-blue-500' : ' text-xl font-bold'}`}>{item?.Heading}</h1>
-            <div className='mt-4  flex flex-col gap-3'>
+            <div className='mt-1  flex flex-col gap-3'>
               {item?.list?.map((elem,index)=>(
                 <h1 key={index} className='text-gray-400 font-normal flex items-center gap-3'>{elem?.logo && <span className='text-blue-300 text-xl font-bold'>{elem?.logo}</span>}{elem?.infoData}</h1>
               ))}

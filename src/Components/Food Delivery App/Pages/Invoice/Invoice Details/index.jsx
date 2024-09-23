@@ -9,7 +9,6 @@ const InvoiceInfo = () => {
     const {loginState} = useContext(LoginContext);
     const {mobileResponsive} = useContext(ResponsiveContext)
     const [showDetails, setShowDetails] = useState({ id: "", toggle: false });
-    // console.log("showDetails",showDetails);
   return (
     <table className="w-[98%] text-left mt-3 border">
             <thead>

@@ -13,12 +13,15 @@ import "../../../../style.css";
 
 // import required modules
 import { Autoplay, Pagination } from "swiper/modules";
+import Button from "../Button/index.jsx";
+import { useNavigate } from "react-router-dom";
 
 export default function Category() {
-  const { state , categoryData} = useContext(CategoryContext);
+  const { state, categoryData } = useContext(CategoryContext);
+  const navigate = useNavigate();
   return (
     <div className="w-full h-[100vh] md:h-[80vh]   flex flex-col items-center justify-between bg-white flex-wrap">
-      <div className="h-1/2 md:h-full w-full md:w-2/5 flex flex-col gap-12 px-6 py-12 md:py-16  ">
+      <div className="h-1/2 md:h-full w-full md:w-1/2 flex flex-col gap-12 px-6 py-12 md:py-16  ">
         <h1 className="text-3xl sm:w-80 md:text-5xl text-yellow-500 font-serif relative border-b-2 border-b-blue-500 pb-5 font-semibold">
           Our Category
         </h1>
@@ -33,18 +36,17 @@ export default function Category() {
           dolorem unde voluptas quod quasi repellendus nihil atque minima, qui
           ea, nobis non porro placeat quaerat iusto blanditiis? Veniam, cum at!
         </p>
-        <div className="w-5/6 border rounded-2xl">
-          <input
-            type="text"
-            placeholder="Search Category"
-            className="border outline-none rounded-s-2xl w-4/5 px-3 py-1"
-          />
-          <button className="text-center bg-yellow-500 text-white rounded-e-2xl h-full w-1/5">
-            Search
-          </button>
+        <div>
+          <div onClick={()=>navigate("/menu")}>
+            <Button
+              text="Explore More"
+              bgColor="rgba(250 204 21 / var(--tw-bg-opacity))"
+              width="166px"
+            />
+          </div>
         </div>
       </div>
-      <div className="w-full md:w-[55%] h-1/2 md:h-full flex md:py-8 items-center md:justify-evenly rounded-t-2xl md:rounded-ss-full bg-blue-100 flex-wrap">
+      <div className="w-full md:w-1/2 h-1/2 md:h-full flex md:py-8 items-center md:justify-evenly rounded-t-2xl md:rounded-ss-full bg-blue-100 flex-wrap">
         <ul className="w-full flex h-3/5 sm:h-4/5 justify-center md:ml-28 items-center ">
           <Swiper
             direction={"vertical"}
@@ -64,7 +66,7 @@ export default function Category() {
                 </li>
               </SwiperSlide>
             ))}
-             {categoryData?.map((item) => (
+            {categoryData?.map((item) => (
               <SwiperSlide key={item?.CatId} className="">
                 <li className="even:bg-blue-50  w-64 md:w-96  shadow-xl flex pb-8 md:p-5 gap-2 mt-10  h-60  bg-yellow-50 rounded-2xl text-blue-500 border-2 border-double border-white">
                   <FoodCategory itemList={item} />

@@ -6,6 +6,7 @@ module.exports = {
       // backgroundImage:{
       // 'footerBg': "url('../src/Components/Images/fsfbg4.jpeg')",
       // }
+    
     },
   },
   plugins: [],
