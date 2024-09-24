@@ -3,7 +3,6 @@ import { Slider } from "../Slider";
 import Category from "../Category";
 import About from "../About";
 import Review from "../Review";
-import GetApp from "../App";
 
 const Landing = () => {
     return(
@@ -12,7 +11,6 @@ const Landing = () => {
             <Category />
             <About />
             <Review/>
-            {/* <GetApp/> */}
         </section>
     )
 }

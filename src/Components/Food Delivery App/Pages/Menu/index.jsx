@@ -25,7 +25,7 @@ const Menupage = () => {
   return (
     <>
       <div className=" w-full  flex flex-col items-center py-6 overflow-auto">
-        <div className="w-full sm:w-11/12 mb-9 gap-3 mx-auto bg-slate-100 flex  py-5 rounded-md justify-between px-2 items-center">
+        <div className="w-full sm:w-11/12 mb-9 gap-3 mx-auto bg-slate-100 flex  py-5 rounded-md justify-between px-8 items-center">
           <div className="flex w-full sm:w-11/12 items-center sm:justify-between">
             <select
               onChange={Filter}
@@ -41,7 +41,7 @@ const Menupage = () => {
             type="text"
             placeholder="Search your tasty meal"
             onChange={Filter}
-            className="w-3/4 sm:w-1/2 border rounded-s-lg py-2 px-3"
+            className="w-5/6 sm:w-1/2 border rounded-s-lg py-2 px-3"
           />
         </div>
         <div className=" w-full bg-slate-100 py-10 flex flex-col sm:flex-row flex-wrap gap-16 sm:gap-32 items-center justify-center ">

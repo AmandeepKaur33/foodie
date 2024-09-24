@@ -20,7 +20,7 @@ export default function Category() {
   const { state, categoryData } = useContext(CategoryContext);
   const navigate = useNavigate();
   return (
-    <div className="w-full h-[100vh] md:h-[80vh]   flex flex-col items-center justify-between bg-white flex-wrap">
+    <div className="w-full h-[120vh] md:h-[80vh]    flex flex-col items-center justify-between bg-white flex-wrap">
       <div className="h-1/2 md:h-full w-full md:w-1/2 flex flex-col gap-12 px-6 py-12 md:py-16  ">
         <h1 className="text-3xl sm:w-80 md:text-5xl text-yellow-500 font-serif relative border-b-2 border-b-blue-500 pb-5 font-semibold">
           Our Category
